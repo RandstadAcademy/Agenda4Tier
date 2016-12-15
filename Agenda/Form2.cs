@@ -15,6 +15,7 @@ namespace Agenda
     /// <summary>
     /// Classe che rappresenta il form2, ovvero la finestrella che appare quando si preme Crea
     /// oppure quando con doppio click si tenta di aggiornare un utente
+    /// Questa classe fa parte dell'INTERFACE TIER posto più in alto
     /// </summary>
     public partial class Form2 : Form
     {
@@ -23,7 +24,6 @@ namespace Agenda
          * Questa serve all'atto dell'aggiornamento e inserimento (nel caso di inserimento è 0)
          */
         private int ID = 0;
-        private Form1 form1;
 
         /// <summary>
         /// Costruttore della classe form2 , la funzione InitializeComponent() è di sistema e viene aggiunta
@@ -34,32 +34,47 @@ namespace Agenda
             InitializeComponent();
         }
 
-        public Form2(int id,Form1 form)
+
+        /// <summary>
+        /// Abbiamo creato questo costruttore in modo da poterci portare dietro l'id
+        /// in modo che possiamo farci delle operazioni
+        /// </summary>
+        public Form2(int id)
         {
-            form1 = form;
             InitializeComponent();
+
+            //vado a richiamare il servizio e estraggo il contatto che mi interessa tramite l'id
             ContattiService svc = new ContattiService();
             Contatto contatto = svc.GetByID(id);
+
+            //setto le textbox con i valori presi dal contatto e come ultimo mi setto l'id
             txtNome.Text = contatto.Name;
             txtMail.Text = contatto.Mail;
             txtTelefono.Text = contatto.Tel;
             ID = id;
         }
 
+        /// <summary>
+        /// Questa funzione non fa altro che scattare quando viene premuto il bottoncino Salva
+        /// </summary>
+        
         private void Salva_Click(object sender, EventArgs e)
         {
+            //mi creo un contatto e me lo valorizzo con i valori presi dalle textbox
             Contatto contatto = new Contatto();
             contatto.Name = txtNome.Text;
             contatto.Tel = txtTelefono.Text;
             contatto.Mail = txtMail.Text;
+
+            //nel caso di insert questo sarà 0
             contatto.ID = ID;
-            AgendaServices.ContattiService f = new AgendaServices.ContattiService();
-            f.SaveOrUpdate(contatto);
+
+            //richiamo il mio service per effettuare l'insert o l'update
+            ContattiService cs = new ContattiService();
+            cs.SaveOrUpdate(contatto);
+
+            //imposto la variabile che serve al form1 per continuare
             this.DialogResult = DialogResult.OK;
-            if (contatto.ID != 0)
-            {
-                form1.LoadData();
-            }
             this.Close();
         }
 

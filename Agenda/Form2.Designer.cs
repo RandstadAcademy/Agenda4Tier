@@ -84,7 +84,6 @@
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(100, 22);
             this.txtTelefono.TabIndex = 5;
-            this.txtTelefono.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // Salva
             // 
