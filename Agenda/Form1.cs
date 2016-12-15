@@ -143,5 +143,30 @@ namespace Agenda
             }
             f.Dispose();
         }
+
+
+        private void buttonUpdate_Click(object sender, EventArgs e)
+        {
+            //istanzio il service
+            ContattiService svc = new ContattiService();
+
+            //verifico che il mio ID che ho settato quando ho evidenziato
+            //un contatto in listBox sia valorizzato
+            if (IDSelected != 0)
+            {
+                Contatto contatto = svc.GetByID(IDSelected);
+                Form2 f = new Form2(contatto);
+
+                if (contatto.ID != 0 && f.ShowDialog() == DialogResult.OK)
+                {
+                    //faccio il refresh dei dati
+                    LoadData();
+                }
+                f.Dispose();
+            }else
+            {
+                MessageBox.Show("Non sono presenti contatti nella lista");
+            }
+        }
     }
 }
