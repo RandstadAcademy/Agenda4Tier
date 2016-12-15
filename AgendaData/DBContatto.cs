@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.OleDb;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,8 +14,8 @@ namespace AgendaData
     /// </summary>
     public class DBContatto
     {
-        //stringa di connessione con il database
-        private string _connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Tommaso\Documents\Visual Studio 2015\Projects\Agenda\TestMermec.mdb";
+        //stringa di connessione con il database con relative Path
+        private string _connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\DB" + "\\TestMermec.mdb";
 
         /// <summary>
         /// Medoto che ci permette di estrarre un contatto in base al suo ID
