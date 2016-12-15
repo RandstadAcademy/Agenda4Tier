@@ -11,7 +11,7 @@ namespace AgendaData
     public class DBContatto
     {
 
-        private string _connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Tommaso\Documents\Visual Studio 2015\Projects\TestMermec.mdb";
+        private string _connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Tommaso\Documents\Visual Studio 2015\Projects\Agenda\TestMermec.mdb";
 
 
         public Contatto GetByID(int ID)
