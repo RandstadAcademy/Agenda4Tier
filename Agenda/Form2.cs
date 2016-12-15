@@ -39,19 +39,15 @@ namespace Agenda
         /// Abbiamo creato questo costruttore in modo da poterci portare dietro l'id
         /// in modo che possiamo farci delle operazioni
         /// </summary>
-        public Form2(int id)
+        public Form2(Contatto contatto)
         {
             InitializeComponent();
-
-            //vado a richiamare il servizio e estraggo il contatto che mi interessa tramite l'id
-            ContattiService svc = new ContattiService();
-            Contatto contatto = svc.GetByID(id);
 
             //setto le textbox con i valori presi dal contatto e come ultimo mi setto l'id
             txtNome.Text = contatto.Name;
             txtMail.Text = contatto.Mail;
             txtTelefono.Text = contatto.Tel;
-            ID = id;
+            ID = contatto.ID;
         }
 
         /// <summary>

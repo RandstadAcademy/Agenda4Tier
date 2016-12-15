@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace AgendaDomain
 {
+    /// <summary>
+    /// Enumerazione che ci servirà per i messaggi
+    /// </summary>
     public enum MessageType
     {
         Sms,

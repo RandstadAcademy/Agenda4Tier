@@ -132,9 +132,9 @@ namespace Agenda
             Contatto contatto = (Contatto)lb.Items[lb.SelectedIndex];
             //mi salvo l'id
             IDSelected = contatto.ID;
-            //passo l'id selezionato al form2 e mi porto dietro un riferimento al form 1 che mi servirà per fare
-            //il refresh
-            Form2 f = new Form2(IDSelected);
+            //passo l'oggetto contatto selezionato al form2
+            //e poi faccio il refresh dopo che sono sicuro che è andato tutto apposto
+            Form2 f = new Form2(contatto);
 
             if (contatto.ID != 0 && f.ShowDialog() == DialogResult.OK )
             {
