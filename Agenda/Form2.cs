@@ -69,7 +69,9 @@ namespace Agenda
             ContattiService cs = new ContattiService();
 
             //Verifico che ogni textBox non sia lasciata vuota
-            if (!(contatto.Name.Equals("") || contatto.Mail.Equals("") || contatto.Tel.Equals("")))            {
+            if (!(contatto.Name.Equals("") || contatto.Mail.Equals("") || contatto.Tel.Equals("")))
+            {
+                //Chiamo il servizio SaveOrUpdate passando in input il contatto da salvare o aggiornare
                 cs.SaveOrUpdate(contatto);
                 //imposto la variabile che serve al form1 per continuare
                 this.DialogResult = DialogResult.OK;
@@ -77,6 +79,8 @@ namespace Agenda
             }
             else
             {
+                //Verifico che tutti i campi siano stati inseriti prima di procedere
+                //all'aggiornamento o al salvataggio
                 MessageBox.Show("Inserire tutti i campi");
             }
         }

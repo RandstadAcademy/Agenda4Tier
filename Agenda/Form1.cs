@@ -147,7 +147,10 @@ namespace Agenda
             f.Dispose();
         }
 
-
+        /// <summary>
+        /// Questo evento viene richiamato dopo che seleziono un contatto dalla lista
+        /// e premo il bottone per aggiornare
+        /// </summary>
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
             //istanzio il service
@@ -157,7 +160,11 @@ namespace Agenda
             //un contatto in listBox sia valorizzato
             if (IDSelected != 0)
             {
+                //Recupero il contatto tramite l'ID grazie al servizio GetByID
                 Contatto contatto = svc.GetByID(IDSelected);
+
+                //passo l'oggetto contatto selezionato al form2
+                //e poi faccio il refresh dopo che sono sicuro che è andato tutto apposto
                 Form2 f = new Form2(contatto);
 
                 if (contatto.ID != 0 && f.ShowDialog() == DialogResult.OK)
@@ -168,6 +175,8 @@ namespace Agenda
                 f.Dispose();
             }else
             {
+                //Mostro un alert nel caso in cui premo il pulsante Aggiorna non essendo
+                //presenti contatti in lista
                 MessageBox.Show("Non sono presenti contatti nella lista");
             }
         }
