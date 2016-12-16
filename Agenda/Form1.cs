@@ -41,9 +41,6 @@ namespace Agenda
         
         private void Form1_Load(object sender, EventArgs e)
         {
-            //Setto la titlebar
-            this.Text = "Agenda Accademy Mermec v.0.1";
-
             //Istanziamo un oggetto ContattiService che si occuperà di andare a recuperare i contatti
             //inoltrando la richiesta ai livelli inferiori dell'architettura
             ContattiService svc = new ContattiService();
@@ -124,28 +121,39 @@ namespace Agenda
         }
 
         /// <summary>
-        /// Questo evento viene lanciato quando faccio doppio click su un elemento della listBox
+        /// Procedura utile a passare il contatto selezionato nella listbox al Form2
         /// </summary>
-        private void listBox1_DoubleClick(object sender, EventArgs e)
+        private void updateContact(object sender, EventArgs e)
         {
+            //istanzio il service
+            ContattiService svc = new ContattiService();
+            Contatto contatto = (this.listBox1.Items[this.listBox1.SelectedIndex]) as Contatto;
 
-            //Identifico la mia listbox
-            ListBox lb = (ListBox)sender;
-
-            //tiro fuori il contatto slezionato
-            Contatto contatto = (Contatto)lb.Items[lb.SelectedIndex];
-            //mi salvo l'id
-            IDSelected = contatto.ID;
             //passo l'oggetto contatto selezionato al form2
             //e poi faccio il refresh dopo che sono sicuro che è andato tutto apposto
             Form2 f = new Form2(contatto);
 
-            if (contatto.ID != 0 && f.ShowDialog() == DialogResult.OK )
+            if (contatto.ID != 0 && f.ShowDialog() == DialogResult.OK)
             {
                 //faccio il refresh dei dati
                 LoadData();
             }
+            else
+            {
+                //Mostro un alert nel caso in cui premo il pulsante Aggiorna non essendo
+                //presenti contatti in lista
+                MessageBox.Show("Non sono presenti contatti nella lista");
+            }
             f.Dispose();
+
+        }
+
+        /// <summary>
+        /// Questo evento viene lanciato quando faccio doppio click su un elemento della listBox
+        /// </summary>
+        private void listBox1_DoubleClick(object sender, EventArgs e)
+        {
+            updateContact(sender, e);
         }
 
         /// <summary>
@@ -154,32 +162,7 @@ namespace Agenda
         /// </summary>
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
-            //istanzio il service
-            ContattiService svc = new ContattiService();
-
-            //verifico che il mio ID che ho settato quando ho evidenziato
-            //un contatto in listBox sia valorizzato
-            if (IDSelected != 0)
-            {
-                //Recupero il contatto tramite l'ID grazie al servizio GetByID
-                Contatto contatto = svc.GetByID(IDSelected);
-
-                //passo l'oggetto contatto selezionato al form2
-                //e poi faccio il refresh dopo che sono sicuro che è andato tutto apposto
-                Form2 f = new Form2(contatto);
-
-                if (contatto.ID != 0 && f.ShowDialog() == DialogResult.OK)
-                {
-                    //faccio il refresh dei dati
-                    LoadData();
-                }
-                f.Dispose();
-            }else
-            {
-                //Mostro un alert nel caso in cui premo il pulsante Aggiorna non essendo
-                //presenti contatti in lista
-                MessageBox.Show("Non sono presenti contatti nella lista");
-            }
+            updateContact(sender, e);
         }
 
         /// <summary>
