@@ -2,6 +2,7 @@
 {
     partial class Form1
     {
+    
         /// <summary>
         /// Variabile di progettazione necessaria.
         /// </summary>
@@ -85,7 +86,6 @@
             this.buttonExport.TabIndex = 4;
             this.buttonExport.Text = "Esporta Contatto";
             this.buttonExport.UseVisualStyleBackColor = true;
-            this.buttonExport.Click += new System.EventHandler(this.buttonExport_Click);
             // 
             // saveFileDialog1
             // 
@@ -102,7 +102,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.listBox1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Agenda Accademy Mermec v.0.1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
 
