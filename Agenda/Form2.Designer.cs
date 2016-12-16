@@ -66,30 +66,30 @@
             // 
             // txtNome
             // 
-            this.txtNome.Location = new System.Drawing.Point(143, 27);
+            this.txtNome.Location = new System.Drawing.Point(143, 30);
             this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(100, 22);
+            this.txtNome.Size = new System.Drawing.Size(210, 22);
             this.txtNome.TabIndex = 3;
             // 
             // txtMail
             // 
-            this.txtMail.Location = new System.Drawing.Point(143, 64);
+            this.txtMail.Location = new System.Drawing.Point(143, 66);
             this.txtMail.Name = "txtMail";
-            this.txtMail.Size = new System.Drawing.Size(100, 22);
+            this.txtMail.Size = new System.Drawing.Size(210, 22);
             this.txtMail.TabIndex = 4;
             // 
             // txtTelefono
             // 
-            this.txtTelefono.Location = new System.Drawing.Point(143, 104);
+            this.txtTelefono.Location = new System.Drawing.Point(143, 101);
             this.txtTelefono.Name = "txtTelefono";
-            this.txtTelefono.Size = new System.Drawing.Size(100, 22);
+            this.txtTelefono.Size = new System.Drawing.Size(210, 22);
             this.txtTelefono.TabIndex = 5;
             // 
             // Salva
             // 
-            this.Salva.Location = new System.Drawing.Point(81, 156);
+            this.Salva.Location = new System.Drawing.Point(41, 153);
             this.Salva.Name = "Salva";
-            this.Salva.Size = new System.Drawing.Size(147, 44);
+            this.Salva.Size = new System.Drawing.Size(312, 44);
             this.Salva.TabIndex = 6;
             this.Salva.Text = "Salva";
             this.Salva.UseVisualStyleBackColor = true;
@@ -99,7 +99,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(399, 427);
+            this.ClientSize = new System.Drawing.Size(399, 233);
             this.Controls.Add(this.Salva);
             this.Controls.Add(this.txtTelefono);
             this.Controls.Add(this.txtMail);
