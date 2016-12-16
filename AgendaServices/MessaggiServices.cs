@@ -4,23 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AgendaDomain;
+using AgendaData;
 
 namespace AgendaServices
 {
-    class MessaggiServices
+    public class MessaggiServices
     {
 
-       /* public void SendGenericMessage(Contatto c, Messaggio m)
+        public void SendMessage(Contatto c, Messaggio m)
         {
-            
 
+            AbstractMessage am = new MailMessage();
 
+            am.SendMessage();
         }
 
-
-        public 
-        */
-
+        
 
     }
 }

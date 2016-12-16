@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AgendaData
 {
-    abstract class AbstractMessage
+    public abstract class AbstractMessage
     {
 
         public abstract bool SendMessage();

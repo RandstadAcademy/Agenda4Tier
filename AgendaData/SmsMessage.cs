@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AgendaData
 {
-    class SmsMessage : AbstractMessage
+    public class SmsMessage : AbstractMessage
     {
         public override bool SendMessage()
         {
