@@ -121,7 +121,7 @@ namespace Agenda
         }
 
         /// <summary>
-        /// Procedura utile a passare il contatto selezionato nella listbox al Form2
+        /// Procedura utile a passare il contatto selezionato nella listbox al Form2 per l'update del contatto
         /// </summary>
         private void updateContact(object sender, EventArgs e)
         {
@@ -133,8 +133,9 @@ namespace Agenda
             //e poi faccio il refresh dopo che sono sicuro che è andato tutto apposto
             Form2 f = new Form2(contatto);
 
-            if (contatto.ID != 0 && f.ShowDialog() == DialogResult.OK)
+            if (contatto.ID != 0)
             {
+                f.ShowDialog();
                 //faccio il refresh dei dati
                 LoadData();
             }
