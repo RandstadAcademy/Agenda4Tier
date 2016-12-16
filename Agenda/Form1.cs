@@ -40,6 +40,9 @@ namespace Agenda
         
         private void Form1_Load(object sender, EventArgs e)
         {
+            //Setto la titlebar
+            this.Text = "Agenda Accademy Mermec v.0.1";
+
             //Istanziamo un oggetto ContattiService che si occuperà di andare a recuperare i contatti
             //inoltrando la richiesta ai livelli inferiori dell'architettura
             ContattiService svc = new ContattiService();

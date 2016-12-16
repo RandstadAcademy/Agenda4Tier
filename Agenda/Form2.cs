@@ -81,6 +81,10 @@ namespace Agenda
             }
         }
 
-
+        private void Form2_Load(object sender, EventArgs e)
+        {
+            //Setto la titlebar
+            this.Text = "Contatto";
+        }
     }
 }
