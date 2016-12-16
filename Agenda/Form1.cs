@@ -41,6 +41,8 @@ namespace Agenda
         
         private void Form1_Load(object sender, EventArgs e)
         {
+            //Setto la titlebar
+            this.Text = "Agenda Accademy Mermec v.0.1";
 
             //Istanziamo un oggetto ContattiService che si occuperà di andare a recuperare i contatti
             //inoltrando la richiesta ai livelli inferiori dell'architettura
@@ -195,6 +197,44 @@ namespace Agenda
         private void buttonExport_Click(object sender, EventArgs e)
         {
 
+        }
+
+        /// <summary>
+        /// Questo evento viene richiamato dopo che seleziono un contatto dalla lista
+        /// e premo il bottone per esportarlo in un file .txt
+        /// </summary>
+        private void buttonExport_Click_1(object sender, EventArgs e)
+        {
+            //istanzio il service
+            ContattiService svc = new ContattiService();
+
+            Contatto contatto = null;
+
+            //Setto il filtro estensione
+            saveFileDialog1.Filter = "txt files (*.txt)|*.txt";
+
+            //verifico che il mio ID che ho settato quando ho evidenziato
+            //un contatto in listBox sia valorizzato
+            if (IDSelected != 0)
+            {
+                //Recupero il contatto tramite l'ID grazie al servizio GetByID
+                contatto = svc.GetByID(IDSelected);
+
+                //Apre la finestra di salvataggio
+                //Verifica che il percorso sia corretto
+                if (saveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK
+                && saveFileDialog1.FileName.Length > 0)
+                {
+                    //Scrive il contatto su file
+                    File.WriteAllText(saveFileDialog1.FileName, "*** CONTATTO ***\n" + "Nome: " + contatto.Name + "\n" + "Email: " + contatto.Mail + "\n" + "Telefono: " + contatto.Tel);
+                    saveFileDialog1.FileName = null;
+                }
+            }
+            else
+            {
+                //Se non sono presenti contatti in lista mostra un alert
+                MessageBox.Show("Nessun contatto presente in lista");
+            }
         }
     }
 }
