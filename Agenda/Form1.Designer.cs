@@ -32,6 +32,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.buttonCancella = new System.Windows.Forms.Button();
             this.buttonUpdate = new System.Windows.Forms.Button();
+            this.buttonExport = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.SuspendLayout();
             // 
             // listBox1
@@ -75,11 +77,26 @@
             this.buttonUpdate.UseVisualStyleBackColor = true;
             this.buttonUpdate.Click += new System.EventHandler(this.buttonUpdate_Click);
             // 
+            // buttonExport
+            // 
+            this.buttonExport.Location = new System.Drawing.Point(30, 437);
+            this.buttonExport.Name = "buttonExport";
+            this.buttonExport.Size = new System.Drawing.Size(403, 48);
+            this.buttonExport.TabIndex = 4;
+            this.buttonExport.Text = "Esporta Contatto";
+            this.buttonExport.UseVisualStyleBackColor = true;
+            this.buttonExport.Click += new System.EventHandler(this.buttonExport_Click);
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(468, 454);
+            this.ClientSize = new System.Drawing.Size(468, 507);
+            this.Controls.Add(this.buttonExport);
             this.Controls.Add(this.buttonUpdate);
             this.Controls.Add(this.buttonCancella);
             this.Controls.Add(this.button1);
@@ -97,6 +114,8 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button buttonCancella;
         private System.Windows.Forms.Button buttonUpdate;
+        private System.Windows.Forms.Button buttonExport;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
 

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -179,6 +180,53 @@ namespace Agenda
                 //presenti contatti in lista
                 MessageBox.Show("Non sono presenti contatti nella lista");
             }
+        }
+
+        /// <summary>
+        /// Dialog Salvataggio necessaria per la scelta della directory ove salvare il  contatto
+        /// </summary>
+        private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// Questo evento viene richiamato dopo che seleziono un contatto dalla lista
+        /// e premo il bottone per esportarlo in un file .txt
+        /// </summary>
+        private void buttonExport_Click(object sender, EventArgs e)
+        {
+            //istanzio il service
+            ContattiService svc = new ContattiService();
+
+            Contatto contatto = null;
+
+            //Setto il filtro estensione
+            saveFileDialog1.Filter = "txt files (*.txt)|*.txt";
+
+            //verifico che il mio ID che ho settato quando ho evidenziato
+            //un contatto in listBox sia valorizzato
+            if (IDSelected != 0)
+            {
+                //Recupero il contatto tramite l'ID grazie al servizio GetByID
+                contatto = svc.GetByID(IDSelected);
+
+                //Apre la finestra di salvataggio
+                //Verifica che il percorso sia corretto
+                if (saveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK
+                && saveFileDialog1.FileName.Length > 0)
+                {
+                    //Scrive il contatto su file
+                    File.WriteAllText(saveFileDialog1.FileName, "*** CONTATTO ***\n" + "Nome: " + contatto.Name + "\n" + "Email: " + contatto.Mail + "\n" + "Telefono: " + contatto.Tel);
+                }
+            }
+            else
+            {
+                //Se non sono presenti contatti in lista mostra un alert
+                MessageBox.Show("Nessun contatto presente in lista");
+            }
+
+                
         }
     }
 }
