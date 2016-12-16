@@ -53,8 +53,6 @@ namespace AgendaServices
                 return;
             }
 
-            throw new Exception(error);
-
         }
 
 

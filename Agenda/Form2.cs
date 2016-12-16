@@ -67,11 +67,18 @@ namespace Agenda
 
             //richiamo il mio service per effettuare l'insert o l'update
             ContattiService cs = new ContattiService();
-            cs.SaveOrUpdate(contatto);
 
-            //imposto la variabile che serve al form1 per continuare
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            //Verifico che ogni textBox non sia lasciata vuota
+            if (!(contatto.Name.Equals("") || contatto.Mail.Equals("") || contatto.Tel.Equals("")))            {
+                cs.SaveOrUpdate(contatto);
+                //imposto la variabile che serve al form1 per continuare
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Inserire tutti i campi");
+            }
         }
 
 
