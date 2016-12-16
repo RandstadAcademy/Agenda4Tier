@@ -41,6 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBContatto.cs" />
+    <Compile Include="AbstractMessage.cs" />
+    <Compile Include="MailMessage.cs" />
+    <Compile Include="SmsMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

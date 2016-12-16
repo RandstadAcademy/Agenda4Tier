@@ -13,6 +13,7 @@ namespace AgendaDomain
     {
         Sms,
         Mail,
+        None,
         All
     }
 }
