@@ -12,6 +12,6 @@ namespace AgendaDomain
         public string  To { get; set; }
         public string From { get; set; }
         public string MessageObject { get; set; }
-        
+        public string Tel { get; set; }
     }
 }

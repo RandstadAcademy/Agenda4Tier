@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AgendaDomain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace AgendaData
 {
     public class SmsMessage : AbstractMessage
     {
-        public override bool SendMessage()
+        public override bool SendMessage(Messaggio messaggio)
         {
             throw new NotImplementedException();
         }

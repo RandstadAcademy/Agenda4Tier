@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AgendaDomain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,6 @@ namespace AgendaData
     public abstract class AbstractMessage
     {
 
-        public abstract bool SendMessage();
+        public abstract bool SendMessage(Messaggio messaggio);
     }
 }

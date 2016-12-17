@@ -121,21 +121,14 @@ namespace Agenda
         }
 
         /// <summary>
-        /// Procedura utile a passare il contatto selezionato nella listbox al Form2 per l'update del contatto
+        /// Procedura utile a passare un contatto ad un Form per l'apertura dello stesso
         /// </summary>
-        private void updateContact(object sender, EventArgs e)
+        private void ChangeView(object sender, EventArgs e, Form form, Contatto contatto)
         {
-            //istanzio il service
-            ContattiService svc = new ContattiService();
-            Contatto contatto = (this.listBox1.Items[this.listBox1.SelectedIndex]) as Contatto;
-
-            //passo l'oggetto contatto selezionato al form2
-            //e poi faccio il refresh dopo che sono sicuro che è andato tutto apposto
-            Form2 f = new Form2(contatto);
 
             if (contatto.ID != 0)
             {
-                f.ShowDialog();
+                form.ShowDialog();
                 //faccio il refresh dei dati
                 LoadData();
             }
@@ -145,7 +138,7 @@ namespace Agenda
                 //presenti contatti in lista
                 MessageBox.Show("Non sono presenti contatti nella lista");
             }
-            f.Dispose();
+            form.Dispose();
 
         }
 
@@ -154,7 +147,12 @@ namespace Agenda
         /// </summary>
         private void listBox1_DoubleClick(object sender, EventArgs e)
         {
-            updateContact(sender, e);
+            Contatto contatto = (this.listBox1.Items[this.listBox1.SelectedIndex]) as Contatto;
+
+            //passo l'oggetto contatto selezionato al form2
+            //e poi faccio il refresh dopo che sono sicuro che è andato tutto apposto
+            Form2 f = new Form2(contatto);
+            ChangeView(sender, e,f,contatto);
         }
 
         /// <summary>
@@ -163,7 +161,12 @@ namespace Agenda
         /// </summary>
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
-            updateContact(sender, e);
+            Contatto contatto = (this.listBox1.Items[this.listBox1.SelectedIndex]) as Contatto;
+
+            //passo l'oggetto contatto selezionato al form2
+            //e poi faccio il refresh dopo che sono sicuro che è andato tutto apposto
+            Form2 f = new Form2(contatto);
+            ChangeView(sender, e, f, contatto);
         }
 
         /// <summary>
@@ -223,8 +226,9 @@ namespace Agenda
 
         private void button2_Click(object sender, EventArgs e)
         {
-            MessaggiServices ms = new MessaggiServices();
-            ms.SendMessage(null,null);
+            Contatto contatto = (this.listBox1.Items[this.listBox1.SelectedIndex]) as Contatto;
+            FormMessage f = new FormMessage(contatto);
+            ChangeView(sender, e, f, contatto);
         }
     }
 }
