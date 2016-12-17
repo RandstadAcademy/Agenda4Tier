@@ -29,6 +29,8 @@ namespace Agenda
             this.contatto = contatto;
             lblNameContactSummary.Text = contatto.Name;
             lblTypeMsg.Text = contatto.MessageType.ToString();
+            lblTelSummary.Text = contatto.Tel;
+            lblEmailSummary.Text = contatto.Mail;
             if (lblTypeMsg.Text.Equals("Sms"))
             {
                 txtboxObjectMsg.Enabled = false;
