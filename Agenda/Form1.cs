@@ -227,8 +227,14 @@ namespace Agenda
         private void button2_Click(object sender, EventArgs e)
         {
             Contatto contatto = (this.listBox1.Items[this.listBox1.SelectedIndex]) as Contatto;
-            FormMessage f = new FormMessage(contatto);
-            ChangeView(sender, e, f, contatto);
+            if (contatto.MessageType.ToString().Equals("None"))
+            {
+                MessageBox.Show("Non è possibile inviare un messaggio:\nPer il contatto selezionato non è stata selezionata alcuna tipologia di messaggio");
+            }else
+            {
+                FormMessage f = new FormMessage(contatto);
+                ChangeView(sender, e, f, contatto);
+            }
         }
     }
 }
