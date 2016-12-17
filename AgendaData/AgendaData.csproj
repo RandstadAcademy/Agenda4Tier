@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="DBContatto.cs" />
     <Compile Include="AbstractMessage.cs" />
+    <Compile Include="DBContattoSqlServer.cs" />
+    <Compile Include="IDBContatto.cs" />
     <Compile Include="MailMessage.cs" />
     <Compile Include="SmsMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
