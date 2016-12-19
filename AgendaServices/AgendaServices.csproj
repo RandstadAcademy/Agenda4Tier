@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AgendaServices</RootNamespace>
     <AssemblyName>AgendaServices</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -52,6 +53,10 @@
     <ProjectReference Include="..\AgendaDomain\AgendaDomain.csproj">
       <Project>{1e97d8ed-aa38-4a12-b504-4f8594944309}</Project>
       <Name>AgendaDomain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PersistenceSystem\PersistenceSystem.csproj">
+      <Project>{e16e06e6-648a-4280-8cd3-2befc8743c59}</Project>
+      <Name>PersistenceSystem</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

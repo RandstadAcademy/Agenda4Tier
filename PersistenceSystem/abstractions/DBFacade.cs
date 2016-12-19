@@ -1,12 +1,13 @@
-﻿using AgendaData.mermec.abstractions.mappers;
-using AgendaDomain;
+﻿
+using PersistenceSystem.abstractions.mappers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AgendaData.mermec
+namespace PersistenceSystem.abstractions
 {
     public class DBFacade
     {
@@ -14,9 +15,21 @@ namespace AgendaData.mermec
        //private string _connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=c:\\users\\fgran\\TestMermec.mdb";
         private string _dbType = "Access";
         private static DBFacade _instance;
+        private IMapperFactory _mapperFactory;
+
+        public IMapperFactory MapperFactory
+        {
+            set
+            {
+                _mapperFactory = value;
+            }
+        }
+
+
         private DBFacade()
         {
-
+            ObjectHandle handle =  Activator.CreateInstance("AgendaData", "AgendaData.mermec.MapperFactory");
+            _mapperFactory = (IMapperFactory)handle.Unwrap();
         }
         public static DBFacade Instance()
         {
@@ -37,13 +50,13 @@ namespace AgendaData.mermec
 
         public AbstractDomainObject GetById(string type, int id)
         {
-            return MapperFactory
+            return _mapperFactory
                 .GetMapperByName(type, _dbType)
                 .GetById(id);
         }
         public List<AbstractDomainObject> GetAll(string type)
         {
-            return MapperFactory
+            return _mapperFactory
                .GetMapperByName(type, _dbType)
                .GetAll();
         }
@@ -52,7 +65,7 @@ namespace AgendaData.mermec
         {
 
             String namew = data.GetType().Name;
-            MapperFactory
+            _mapperFactory
                .GetMapperByName(namew, _dbType)
                .SaveOrUpdate(data);
         }
@@ -60,7 +73,7 @@ namespace AgendaData.mermec
         public void Delete(AbstractDomainObject data)
         {
             String namew = data.GetType().Name;
-            MapperFactory
+            _mapperFactory
                .GetMapperByName(namew, _dbType)
                .Delete(data);
         }

@@ -1,6 +1,7 @@
 ﻿using AgendaData.mermec;
 using AgendaDomain;
 using AgendaServices;
+using PersistenceSystem.abstractions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,6 +33,8 @@ namespace Agenda
         public Form1()
         {
             InitializeComponent();
+
+            //DBFacade.Instance().MapperFactory = new MapperFactory();
         }
 
 

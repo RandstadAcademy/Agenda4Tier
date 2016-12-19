@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AgendaDomain;
 using System.Data.OleDb;
 using System.Data;
 
-namespace AgendaData.mermec.abstractions.mappers
+namespace PersistenceSystem.abstractions.mappers
 {
-    abstract class AbstractMapper : IDBMapper
+    public abstract class AbstractMapper : IDBMapper
     {
        
         private string _dbType;

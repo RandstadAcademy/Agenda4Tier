@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B86CD253-0E2B-481D-8ECA-F18E4627CADB}</ProjectGuid>
+    <ProjectGuid>{E16E06E6-648A-4280-8CD3-2BEFC8743C59}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AgendaData</RootNamespace>
-    <AssemblyName>AgendaData</AssemblyName>
+    <RootNamespace>PersistenceSystem</RootNamespace>
+    <AssemblyName>PersistenceSystem</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,13 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Downloads\mysql-connector-net-6.9.9-noinstall\v4.5\MySql.Data.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Net" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,23 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="mermec\concreteMappers\DBContatto.cs" />
-    <Compile Include="mermec\MapperFactory.cs" />
-    <Compile Include="old\AbstractMessage.cs" />
-    <Compile Include="old\DBContattoMySql.cs" />
-    <Compile Include="old\MailMessage.cs" />
-    <Compile Include="old\SmsMessage.cs" />
+    <Compile Include="AbstractDomainObject.cs" />
+    <Compile Include="abstractions\DbDriversFactory.cs" />
+    <Compile Include="abstractions\DBFacade.cs" />
+    <Compile Include="abstractions\mappers\AbstractMapper.cs" />
+    <Compile Include="abstractions\mappers\IDBMapper.cs" />
+    <Compile Include="abstractions\mappers\IMapperFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\AgendaDomain\AgendaDomain.csproj">
-      <Project>{1e97d8ed-aa38-4a12-b504-4f8594944309}</Project>
-      <Name>AgendaDomain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PersistenceSystem\PersistenceSystem.csproj">
-      <Project>{e16e06e6-648a-4280-8cd3-2befc8743c59}</Project>
-      <Name>PersistenceSystem</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

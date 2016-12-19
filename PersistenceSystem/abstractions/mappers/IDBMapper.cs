@@ -1,13 +1,13 @@
-﻿using AgendaDomain;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AgendaData.mermec.abstractions.mappers
+namespace PersistenceSystem.abstractions.mappers
 {
-    interface IDBMapper
+    public interface IDBMapper
     {
         AbstractDomainObject GetById(int Id);
         List<AbstractDomainObject> GetAll();
