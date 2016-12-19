@@ -15,7 +15,7 @@ namespace AgendaData
     public class DBContatto
     {
         //stringa di connessione con il database con relative Path
-        private string _connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\DB" + "\\TestMermec.mdb";
+        private string _connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=c:\\users\\fgran\\TestMermec.mdb";
 
         /// <summary>
         /// Medoto che ci permette di estrarre un contatto in base al suo ID
@@ -40,12 +40,7 @@ namespace AgendaData
                 //se ho letto qualcosa creo un contatto e lo valorizzo
                 if (r.Read())
                 {
-                    contatto = new Contatto();
-                    contatto.ID = ID;
-                    contatto.Mail = r["Mail"].ToString();
-                    contatto.Tel = r["Tel"].ToString();
-                    contatto.Name = r["Name1"].ToString();
-                    contatto.MessageType = (MessageType)Enum.Parse(typeof(MessageType), r["MessageType"].ToString());
+                    contatto = DoLoad(ID, r);
                 }
 
                 r.Close();
@@ -67,6 +62,47 @@ namespace AgendaData
                 cmd.Dispose();
             }
         }
+
+        private Contatto DoLoad(int ID, OleDbDataReader r)
+        {
+            Contatto contatto = new Contatto();
+            contatto.Id = ID;
+            contatto.Mail = r["Mail"].ToString();
+            contatto.Tel = r["Tel"].ToString();
+            contatto.Name = r["Name1"].ToString();
+            contatto.MessageTypes = new List<string>(RetrieveMessageTypesArray(r));
+            return contatto;
+        }
+
+        private  string[] RetrieveMessageTypesArray(OleDbDataReader r)
+        {
+            //poichè la stringa serializzata nel campo
+            //MessageType è una lista di stringhe separate da ','
+            //allora recupero il camopo dal db e poi lo 
+            //serializzo
+            string list = "";
+            if (r["MessageType"] == null)
+            {
+                list = "";
+            }
+            else
+            {
+                list = r["MessageType"].ToString();
+            }
+            //ottenurta la stringa finalemnte deserializzo
+            string[] list1 = null;
+            if (list.Equals(""))
+            {
+                list1 = new string[] { };
+            }
+            else
+            {
+                list1 = list.Split(new Char[] { ',' });
+            }
+
+            return list1;
+        }
+
         /// <summary>
         /// Metodo che mi permette di estrarre tutti i contatti
         /// Ritorna una lista di oggetti Contatto
@@ -85,15 +121,11 @@ namespace AgendaData
                 conn.Open();
                 OleDbDataReader r = cmd.ExecuteReader();
                 list = new List<Contatto>();
-                Contatto contatto = null;
+             
                 while (r.Read())
                 {
-                    contatto = new Contatto();
-                    contatto.ID = Convert.ToInt32(r["ID"]);
-                    contatto.Mail = r["Mail"].ToString();
-                    contatto.Tel = r["Tel"].ToString();
-                    contatto.Name = r["Name1"].ToString();
-                    contatto.MessageType = (MessageType)Enum.Parse(typeof(MessageType), r["MessageType"].ToString());
+                    Contatto contatto = DoLoad(Convert.ToInt32(r["ID"]), r);
+                   
                     list.Add(contatto);
                 }
 
@@ -124,13 +156,13 @@ namespace AgendaData
         public void SaveOrUpdate(Contatto contatto)
         {
             //se l'id del contatto è 0 ovvero non esiste eseguo una insert altrimenti faccio una update
-            if(contatto.ID == 0)
+            if(contatto.Id == 0)
             {
                 DoInsert(contatto);
                 return;
             }
 
-            Update(contatto);
+            DoUpdate(contatto);
 
         }
 
@@ -138,12 +170,12 @@ namespace AgendaData
         /// Metodo che mi esegue l'update
         /// </summary>
         /// <param name="contatto">IL contatto aggiornato, si userà il suo id per fare l'update</param>
-        private void Update(Contatto contatto)
+        private void DoUpdate(Contatto contatto)
         {
             OleDbConnection conn = new OleDbConnection(_connectionString);
             OleDbCommand cmd = new OleDbCommand(@"Update Contatti set 
                                                 Name1 = @name1, Tel = @tel, 
-                                                Mail = @mail, MessageType = @mt where ID = "+ contatto.ID, conn);
+                                                Mail = @mail, MessageType = @mt where ID = "+ contatto.Id, conn);
 
             try
             {
@@ -167,7 +199,14 @@ namespace AgendaData
 
                 param = cmd.CreateParameter();
                 param.ParameterName = @"mt";
-                param.Value = contatto.MessageType.ToString();
+                if (contatto.MessageTypes.Count == 0)
+                {
+                    param.Value = DBNull.Value;
+                }
+                else
+                {
+                    param.Value = String.Join(",", contatto.MessageTypes);
+                }
                 cmd.Parameters.Add(param);
 
                 cmd.ExecuteNonQuery();
@@ -218,7 +257,15 @@ namespace AgendaData
 
                 param = cmd.CreateParameter();
                 param.ParameterName = @"mt";
-                param.Value = contatto.MessageType.ToString();
+                if (contatto.MessageTypes.Count == 0)
+                {
+                    param.Value = DBNull.Value;
+                }
+                else
+                {
+                    param.Value = String.Join(",",contatto.MessageTypes);
+                }
+               
                 cmd.Parameters.Add(param);
 
                 cmd.ExecuteNonQuery();
@@ -241,11 +288,11 @@ namespace AgendaData
         /// Metodo che effettua una cancellazione in base ad un ID
         /// </summary>
         /// <param name="ID">Id che utilizzerò per cancellare</param>
-        public void Delete(int ID)
+        public void Delete(int Id)
         {
             //come su
             OleDbConnection conn = new OleDbConnection(_connectionString);
-            OleDbCommand cmd = new OleDbCommand(@"Delete from Contatti where ID = " +ID.ToString(), conn);
+            OleDbCommand cmd = new OleDbCommand(@"Delete from Contatti where ID = " +Id.ToString(), conn);
 
             try
             {

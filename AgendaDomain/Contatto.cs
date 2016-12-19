@@ -12,18 +12,34 @@ namespace AgendaDomain
     public class Contatto
     {
         //mi setto una serie di proprietà pubbliche
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Tel { get; set; }
         public string Mail { get; set; }
-        public MessageType MessageType { get; set; }
+        private List<string> _messageTypes;
+
+
+        public List<string> MessageTypes
+        {
+            get
+            {
+                return _messageTypes;
+            }
+
+            set
+            {
+                if (value ==  null)
+                    value = new List<string>();
+                _messageTypes = value;
+            }
+        }
 
         /// <summary>
         /// Costruttore della classe Contatto
         /// </summary>
         public Contatto()
         {
-            MessageType = MessageType.Mail;
+            MessageTypes = new List<string>();
         }
 
 

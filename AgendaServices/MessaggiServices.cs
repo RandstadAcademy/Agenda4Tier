@@ -13,23 +13,23 @@ namespace AgendaServices
 
         public void SendMessage(Contatto c, Messaggio m)
         {
-            if (c.MessageType.ToString().Equals("Sms"))
-            {
+            //if (c.MessageType.ToString().Equals("Sms"))
+            //{
                 
-            }
+            //}
 
-            if (c.MessageType.ToString().Equals("Mail"))
-            {
-                AbstractMessage am = new MailMessage();
-                am.SendMessage(m);
-            }
+            //if (c.MessageType.ToString().Equals("Mail"))
+            //{
+            //    AbstractMessage am = new MailMessage();
+            //    am.SendMessage(m);
+            //}
 
-            if (c.MessageType.ToString().Equals("All"))
-            {
-                AbstractMessage am = new MailMessage();
-                am.SendMessage(m);
-                //Da richiamare anche il metodo per l'inivio del messaggio una volta che sarà stato implementato
-            }
+            //if (c.MessageType.ToString().Equals("All"))
+            //{
+            //    AbstractMessage am = new MailMessage();
+            //    am.SendMessage(m);
+            //    //Da richiamare anche il metodo per l'inivio del messaggio una volta che sarà stato implementato
+            //}
         }
 
 

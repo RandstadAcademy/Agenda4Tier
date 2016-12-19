@@ -28,14 +28,14 @@ namespace Agenda
             InitializeComponent();
             this.contatto = contatto;
             lblNameContactSummary.Text = contatto.Name;
-            lblTypeMsg.Text = contatto.MessageType.ToString();
+           // lblTypeMsg.Text = contatto.MessageType.ToString();
             lblTelSummary.Text = contatto.Tel;
             lblEmailSummary.Text = contatto.Mail;
             if (lblTypeMsg.Text.Equals("Sms"))
             {
                 txtboxObjectMsg.Enabled = false;
             }
-            ID = contatto.ID;
+            ID = contatto.Id;
         }
 
         private void label3_Click(object sender, EventArgs e)

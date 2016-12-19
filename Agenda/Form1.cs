@@ -41,6 +41,8 @@ namespace Agenda
         
         private void Form1_Load(object sender, EventArgs e)
         {
+
+
             //Istanziamo un oggetto ContattiService che si occuperà di andare a recuperare i contatti
             //inoltrando la richiesta ai livelli inferiori dell'architettura
             ContattiService svc = new ContattiService();
@@ -98,7 +100,7 @@ namespace Agenda
             Contatto contatto = (Contatto)lb.Items[lb.SelectedIndex];
 
             //salvo il mio ID
-            IDSelected = contatto.ID;
+            IDSelected = contatto.Id;
         }
 
         /// <summary>
@@ -107,17 +109,24 @@ namespace Agenda
         /// </summary>
         private void buttonCancella_Click(object sender, EventArgs e)
         {
-            //istanzio il service
-            ContattiService svc = new ContattiService();
 
-            //verifico che il mio ID che ho settato quando ho evidenziato
-            //un contatto in listBox sia valorizzato
-            if (IDSelected != 0)
+            if (MessageBox.Show("Sicuro?", "Domanda", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                //demando la cancellazione ai piani inferiori dell'architettura
-                svc.Delete(IDSelected);
-                LoadData();
+
+                //istanzio il service
+                ContattiService svc = new ContattiService();
+
+                //verifico che il mio ID che ho settato quando ho evidenziato
+                //un contatto in listBox sia valorizzato
+                if (IDSelected != 0)
+                {
+                    //demando la cancellazione ai piani inferiori dell'architettura
+                    svc.Delete(IDSelected);
+                    LoadData();
+                }
             }
+
+           
         }
 
         /// <summary>
@@ -126,7 +135,7 @@ namespace Agenda
         private void ChangeView(object sender, EventArgs e, Form form, Contatto contatto)
         {
 
-            if (contatto.ID != 0)
+            if (contatto.Id != 0)
             {
                 form.ShowDialog();
                 //faccio il refresh dei dati
@@ -227,14 +236,14 @@ namespace Agenda
         private void button2_Click(object sender, EventArgs e)
         {
             Contatto contatto = (this.listBox1.Items[this.listBox1.SelectedIndex]) as Contatto;
-            if (contatto.MessageType.ToString().Equals("None"))
-            {
-                MessageBox.Show("Non è possibile inviare un messaggio:\nPer il contatto selezionato non è stata selezionata alcuna tipologia di messaggio");
-            }else
-            {
-                FormMessage f = new FormMessage(contatto);
-                ChangeView(sender, e, f, contatto);
-            }
+            //if (contatto.MessageType.ToString().Equals("None"))
+            //{
+            //    MessageBox.Show("Non è possibile inviare un messaggio:\nPer il contatto selezionato non è stata selezionata alcuna tipologia di messaggio");
+            //}else
+            //{
+            //    FormMessage f = new FormMessage(contatto);
+            //    ChangeView(sender, e, f, contatto);
+            //}
         }
     }
 }

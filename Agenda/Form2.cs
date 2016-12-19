@@ -1,4 +1,5 @@
 ﻿using AgendaDomain;
+using AgendaDomain.Communications;
 using AgendaServices;
 using System;
 using System.Collections.Generic;
@@ -19,11 +20,13 @@ namespace Agenda
     /// </summary>
     public partial class Form2 : Form
     {
-        /*
-         * Abbiamo deciso di inserire una variabile privata che rappresenta l'ID
-         * Questa serve all'atto dell'aggiornamento e inserimento (nel caso di inserimento è 0)
-         */
-        private int ID = 0;
+
+        // * Abbiamo deciso di inserire una variabile privata che rappresenta l'ID
+        // * Questa serve all'atto dell'aggiornamento e inserimento (nel caso di inserimento è 0)
+        // 
+        //private int ID = 0;
+
+        private Contatto _current;
 
         /// <summary>
         /// Costruttore della classe form2 , la funzione InitializeComponent() è di sistema e viene aggiunta
@@ -32,6 +35,8 @@ namespace Agenda
         public Form2()
         {
             InitializeComponent();
+            messageTypes.Items.AddRange(new MessageTypes().MessageTypesList.ToArray());
+
         }
 
 
@@ -43,51 +48,68 @@ namespace Agenda
         {
             InitializeComponent();
 
+            messageTypes.Items.AddRange(new MessageTypes().MessageTypesList.ToArray());
+
+            _current = contatto;
+
+            //carioc is dati nellìinterfaccia
+            LoadData();
+
+
+        }
+
+        private void LoadData()
+        {
+            if (_current == null)
+                return;
             //setto le textbox con i valori presi dal contatto e come ultimo mi setto l'id
-            txtNome.Text = contatto.Name;
-            txtMail.Text = contatto.Mail;
-            txtTelefono.Text = contatto.Tel;
-            ID = contatto.ID;
+            txtNome.Text = _current.Name;
+            txtMail.Text = _current.Mail;
+            txtTelefono.Text = _current.Tel;
 
-            //inizializzo le checkboxes
-            if (contatto.MessageType == MessageType.All)
-            {
-                checkMail.Checked = true;
-                checkSms.Checked = true;
-            }
-            else if (contatto.MessageType == MessageType.Sms)
-            {
-                checkSms.Checked = true;
-            }
-            else if (contatto.MessageType == MessageType.Mail) {
-                checkMail.Checked = true;
-            }
 
+            foreach (string item in _current.MessageTypes)
+            {
+                messageTypes.SetItemChecked(getItemIndex(item), true);
+            }
+        }
+
+        private int getItemIndex(string item)
+        {
+            int i = 0;
+            foreach (string elem in messageTypes.Items)
+            {
+                if (item.Equals(elem))
+                    return i;
+                i++;
+            }
+            return -1;
         }
 
         /// <summary>
         /// Questa funzione non fa altro che scattare quando viene premuto il bottoncino Salva
         /// </summary>
-        
+
         private void Salva_Click(object sender, EventArgs e)
         {
             
 
-            //Verifico che ogni textBox non sia lasciata vuota
-            if (!(String.IsNullOrEmpty(txtNome.Text) || 
-                    String.IsNullOrEmpty(txtMail.Text) || 
-                    String.IsNullOrEmpty(txtTelefono.Text)))
-            {
+            ////Verifico che ogni textBox non sia lasciata vuota
+            //if (!(String.IsNullOrEmpty(txtNome.Text) || 
+            //        String.IsNullOrEmpty(txtMail.Text) || 
+            //        String.IsNullOrEmpty(txtTelefono.Text)))
+            //{
 
                 //mi creo un contatto e me lo valorizzo con i valori presi dalle textbox
                 Contatto contatto = new Contatto();
+                if (_current != null)
+                    contatto = _current;
                 contatto.Name = txtNome.Text;
                 contatto.Tel = txtTelefono.Text;
                 contatto.Mail = txtMail.Text;
                 SetMessageType(contatto);
 
-                //nel caso di insert questo sarà 0
-                contatto.ID = ID;
+
 
                 //richiamo il mio service per effettuare l'insert o l'update
                 ContattiService cs = new ContattiService();
@@ -98,36 +120,28 @@ namespace Agenda
                 //imposto la variabile che serve al form1 per continuare
                 this.DialogResult = DialogResult.OK;
                 this.Close();
-            }
-            else
-            {
+            //}
+            //else
+            //{
                 //Verifico che tutti i campi siano stati inseriti prima di procedere
                 //all'aggiornamento o al salvataggio
-                MessageBox.Show("Inserire tutti i campi");
-            }
+                //MessageBox.Show("Inserire tutti i campi");
+            //}
         }
 
         private void SetMessageType(Contatto contatto)
         {
 
-            if (this.checkMail.Checked && this.checkSms.Checked)
+
+            foreach (string item in messageTypes.CheckedItems)
             {
-                contatto.MessageType = MessageType.All;
+                contatto.MessageTypes.Add(item);
             }
-            else if (this.checkMail.Checked)
-            {
-                contatto.MessageType = MessageType.Mail;
-            }
-            else if (this.checkSms.Checked)
-            {
-                contatto.MessageType = MessageType.Sms;
-            }
-            else
-            {
-                contatto.MessageType = MessageType.None;
-            }
+
+
+
         }
 
-
+      
     }
 }
