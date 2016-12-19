@@ -1,10 +1,11 @@
-﻿using System;
+﻿using AgendaData.mermec.concreteMappers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AgendaData.mermec
+namespace AgendaData.mermec.abstractions.mappers
 {
     class MapperFactory
     {

@@ -7,7 +7,7 @@ using AgendaDomain;
 using System.Data.OleDb;
 using System.Data;
 
-namespace AgendaData.mermec.abstractions
+namespace AgendaData.mermec.abstractions.mappers
 {
     abstract class AbstractMapper : IDBMapper
     {

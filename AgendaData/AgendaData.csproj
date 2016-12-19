@@ -45,16 +45,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="mermec\abstractions\AbstractMapper.cs" />
+    <Compile Include="mermec\abstractions\mappers\AbstractMapper.cs" />
     <Compile Include="mermec\abstractions\DbDriversFactory.cs" />
-    <Compile Include="mermec\mappers\DBContatto.cs" />
+    <Compile Include="mermec\concreteMappers\DBContatto.cs" />
     <Compile Include="AbstractMessage.cs" />
     <Compile Include="DBContattoMySql.cs" />
-    <Compile Include="DBContattoSqlServer.cs" />
     <Compile Include="mermec\abstractions\DBFacade.cs" />
-    <Compile Include="mermec\abstractions\IDBMapper.cs" />
+    <Compile Include="mermec\abstractions\mappers\IDBMapper.cs" />
     <Compile Include="MailMessage.cs" />
-    <Compile Include="mermec\abstractions\MapperFactory.cs" />
+    <Compile Include="mermec\abstractions\mappers\MapperFactory.cs" />
     <Compile Include="SmsMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

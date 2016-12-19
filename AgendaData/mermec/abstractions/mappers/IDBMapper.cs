@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AgendaData.mermec
+namespace AgendaData.mermec.abstractions.mappers
 {
     interface IDBMapper
     {

@@ -1,4 +1,5 @@
 ﻿using AgendaData.mermec.abstractions;
+using AgendaData.mermec.abstractions.mappers;
 using AgendaDomain;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AgendaData.mermec
+namespace AgendaData.mermec.concreteMappers
 {
     /// <summary>
     /// Classe che rappresenta l'unione logica tra il nostro dominio e le nostre sorgenti dati
