@@ -1,4 +1,5 @@
 ﻿using AgendaData;
+using AgendaData.mermec;
 using AgendaDomain;
 using System;
 using System.Collections.Generic;
@@ -22,8 +23,8 @@ namespace AgendaServices
         /// <param name="id">Id da passare al livello inferiore</param>
         public Contatto GetByID(int id)
         {
-            DBContatto DBContatto = new DBContatto();
-            return DBContatto.GetByID(id);
+           
+            return (Contatto)DBFacade.Instance().GetById("Contatto" ,id) ;
         }
 
         /// <summary>
@@ -31,8 +32,12 @@ namespace AgendaServices
         /// </summary>
         public List<Contatto> GetAll()
         {
-            DBContatto DBContatto = new DBContatto();
-            return DBContatto.GetAll();
+            List<Contatto> c = new List<Contatto>();
+
+            List<AbstractDomainObject> l = DBFacade.Instance().GetAll("Contatto");
+            l.ForEach(d => c.Add((Contatto)d));
+
+            return c;
         }
 
 
@@ -48,8 +53,8 @@ namespace AgendaServices
             if (string.IsNullOrEmpty(error))
             {
                 ///nessun errore e procedo
-                DBContatto DBContatto = new DBContatto();
-                DBContatto.SaveOrUpdate(contatto);
+              
+                DBFacade.Instance().SaveOrUpdate(contatto);
                 return;
             }
 
@@ -62,8 +67,9 @@ namespace AgendaServices
         /// <param name="id">Id del contatto da cancellare</param>
         public void Delete(int id)
         {
-            DBContatto DBContatto = new DBContatto();
-            DBContatto.Delete(id);
+            Contatto ng = new Contatto();
+            ng.Id = id;
+            DBFacade.Instance().Delete(ng);
         }
 
     }

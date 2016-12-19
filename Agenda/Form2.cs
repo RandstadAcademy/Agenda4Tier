@@ -132,7 +132,7 @@ namespace Agenda
         private void SetMessageType(Contatto contatto)
         {
 
-
+            contatto.MessageTypes.Clear();
             foreach (string item in messageTypes.CheckedItems)
             {
                 contatto.MessageTypes.Add(item);

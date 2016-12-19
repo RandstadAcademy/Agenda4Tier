@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractDomainObject.cs" />
     <Compile Include="Communications\MessageTypes.cs" />
     <Compile Include="Contatto.cs" />
     <Compile Include="MessageType.cs" />

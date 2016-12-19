@@ -1,4 +1,5 @@
-﻿using AgendaDomain;
+﻿using AgendaData.mermec;
+using AgendaDomain;
 using AgendaServices;
 using System;
 using System.Collections.Generic;
@@ -244,6 +245,17 @@ namespace Agenda
             //    FormMessage f = new FormMessage(contatto);
             //    ChangeView(sender, e, f, contatto);
             //}
+        }
+
+        private void btnDB_Click(object sender, EventArgs e)
+        {
+            if (Properties.Settings.Default.DBType.Equals("Access"))
+                Properties.Settings.Default.DBType= "SqlServer";
+            else
+                Properties.Settings.Default.DBType = "Access";
+
+            DBFacade.Instance().InitializeDB(Properties.Settings.Default.DBType);
+            LoadData();
         }
     }
 }
