@@ -112,6 +112,10 @@
       <Project>{bb7d90f6-c3c4-4210-84f8-adc579896310}</Project>
       <Name>AgendaServices</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MessageService\MessageService.csproj">
+      <Project>{7a22296f-058b-4d74-a915-199bcc109ce7}</Project>
+      <Name>MessageService</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PersistenceSystem\PersistenceSystem.csproj">
       <Project>{e16e06e6-648a-4280-8cd3-2befc8743c59}</Project>
       <Name>PersistenceSystem</Name>

@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgendaData", "AgendaData\Ag
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersistenceSystem", "PersistenceSystem\PersistenceSystem.csproj", "{E16E06E6-648A-4280-8CD3-2BEFC8743C59}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageService", "MessageService\MessageService.csproj", "{7A22296F-058B-4D74-A915-199BCC109CE7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{E16E06E6-648A-4280-8CD3-2BEFC8743C59}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E16E06E6-648A-4280-8CD3-2BEFC8743C59}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E16E06E6-648A-4280-8CD3-2BEFC8743C59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A22296F-058B-4D74-A915-199BCC109CE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A22296F-058B-4D74-A915-199BCC109CE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A22296F-058B-4D74-A915-199BCC109CE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A22296F-058B-4D74-A915-199BCC109CE7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

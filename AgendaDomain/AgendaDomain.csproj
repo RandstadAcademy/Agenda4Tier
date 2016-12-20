@@ -44,7 +44,6 @@
     <Compile Include="Communications\MessageTypes.cs" />
     <Compile Include="Contatto.cs" />
     <Compile Include="MessageType.cs" />
-    <Compile Include="Messaggio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

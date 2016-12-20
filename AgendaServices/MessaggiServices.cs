@@ -5,34 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using AgendaDomain;
 using AgendaData;
+using MessageService;
 
 namespace AgendaServices
 {
     public class MessaggiServices
     {
 
-        public void SendMessage(Contatto c, Messaggio m)
+        public void SendMessage(MessagePayload messagePayload)
         {
-            //if (c.MessageType.ToString().Equals("Sms"))
-            //{
-                
-            //}
-
-            //if (c.MessageType.ToString().Equals("Mail"))
-            //{
-            //    AbstractMessage am = new MailMessage();
-            //    am.SendMessage(m);
-            //}
-
-            //if (c.MessageType.ToString().Equals("All"))
-            //{
-            //    AbstractMessage am = new MailMessage();
-            //    am.SendMessage(m);
-            //    //Da richiamare anche il metodo per l'inivio del messaggio una volta che sarà stato implementato
-            //}
+            MessageFacade.Instance().Send(messagePayload);
         }
-
-
-
+        
     }
 }

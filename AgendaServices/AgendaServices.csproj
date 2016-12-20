@@ -54,6 +54,10 @@
       <Project>{1e97d8ed-aa38-4a12-b504-4f8594944309}</Project>
       <Name>AgendaDomain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MessageService\MessageService.csproj">
+      <Project>{7a22296f-058b-4d74-a915-199bcc109ce7}</Project>
+      <Name>MessageService</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PersistenceSystem\PersistenceSystem.csproj">
       <Project>{e16e06e6-648a-4280-8cd3-2befc8743c59}</Project>
       <Name>PersistenceSystem</Name>

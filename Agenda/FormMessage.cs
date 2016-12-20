@@ -1,5 +1,6 @@
 ﻿using AgendaDomain;
 using AgendaServices;
+using MessageService;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,16 +27,10 @@ namespace Agenda
         public FormMessage(Contatto contatto)
         {
             InitializeComponent();
+      
             this.contatto = contatto;
-            lblNameContactSummary.Text = contatto.Name;
-           // lblTypeMsg.Text = contatto.MessageType.ToString();
-            lblTelSummary.Text = contatto.Tel;
-            lblEmailSummary.Text = contatto.Mail;
-            if (lblTypeMsg.Text.Equals("Sms"))
-            {
-                txtboxObjectMsg.Enabled = false;
-            }
-            ID = contatto.Id;
+
+            LoadData();
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -50,26 +45,47 @@ namespace Agenda
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessaggiServices ms = new MessaggiServices();
-            Messaggio messaggio = null;
 
             if ((!(String.IsNullOrEmpty(txtboxObjectMsg.Text) ||
                   String.IsNullOrEmpty(txtboxMsg.Text))) || 
                   (!String.IsNullOrEmpty(txtboxMsg.Text)
                   && txtboxObjectMsg.Enabled==false))
             {
-                messaggio = new Messaggio();
-                messaggio.Body = txtboxMsg.Text;
-                messaggio.MessageObject = txtboxObjectMsg.Text;
-                messaggio.From = "randstadacademydotnet@gmail.com";
-                messaggio.To = contatto.Mail;
-                messaggio.Tel = contatto.Tel;
-                ms.SendMessage(contatto, messaggio);
+                MessagePayload messagePayload = new MessagePayload();
+                MessageService.Message message = new MessageService.Message();
+                message.Body = txtboxMsg.Text;
+                message.Object = txtboxObjectMsg.Text;
+                message.Mail = contatto.Mail;
+                message.PhoneNumber = contatto.Tel;
+                messagePayload.Message = message;
+                messagePayload.TypesList = contatto.MessageTypes;
+                MessaggiServices service = new MessaggiServices();
+                service.SendMessage(messagePayload);
+
+                //messaggio.Body = txtboxMsg.Text;
+                //messaggio.MessageObject = txtboxObjectMsg.Text;
+                //messaggio.From = "randstadacademydotnet@gmail.com";
+                //messaggio.To = contatto.Mail;
+                //messaggio.Tel = contatto.Tel;
+                //ms.SendMessage(contatto, messaggio);
                 MessageBox.Show("Messaggio inviato");
             }else
             {
                 MessageBox.Show("Si prega di inserire tutti i campi");
             }
         }
+
+        private void LoadData()
+        {
+            if (lblTypeMsg.Text.Equals("Sms"))
+            {
+                txtboxObjectMsg.Enabled = false;
+            }
+            lblNameContactSummary.Text = contatto.Name;
+            lblEmailSummary.Text = contatto.Mail;
+            lblTelSummary.Text = contatto.Tel;
+            lblTypeMsg.Text = contatto.MessageTypes.ToString();
+        }
+
     }
 }
