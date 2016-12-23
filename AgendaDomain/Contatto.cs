@@ -20,6 +20,7 @@ namespace AgendaDomain
         private List<string> _messageTypes;
 
 
+
         public List<string> MessageTypes
         {
             get
@@ -69,6 +70,20 @@ namespace AgendaDomain
         public override string ToString()
         {
             return this.Name + " - " + this.Mail + " - " + this.Tel;
+        }
+
+
+        public string MessageTypesToString() {
+
+            string messagesTypes= String.Empty;
+
+            foreach (string item in _messageTypes)
+            {
+                messagesTypes += item +", ";
+
+            }
+
+            return messagesTypes;
         }
 
     }

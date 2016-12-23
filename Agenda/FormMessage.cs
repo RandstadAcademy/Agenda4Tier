@@ -76,7 +76,7 @@ namespace Agenda
             lblNameContactSummary.Text = contatto.Name;
             lblEmailSummary.Text = contatto.Mail;
             lblTelSummary.Text = contatto.Tel;
-            lblTypeMsg.Text = contatto.MessageTypes.ToString();
+            lblTypeMsg.Text = contatto.MessageTypesToString();
         }
 
     }
