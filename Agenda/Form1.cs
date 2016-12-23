@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PersistenceSystem;
 
 namespace Agenda
 {
@@ -34,8 +35,21 @@ namespace Agenda
         public Form1()
         {
             InitializeComponent();
+            DBFacade.Instance().InitializeSystem(CreateObjectFromProperties());
+               
 
             //DBFacade.Instance().MapperFactory = new MapperFactory();
+        }
+
+        private PersistenceSystemConfig CreateObjectFromProperties()
+        {
+            PersistenceSystemConfig psc = new PersistenceSystemConfig();
+            psc.DBType = Properties.Settings.Default.DBType;
+            psc.AccessConnectionString= Properties.Settings.Default.AccessConnectionString;
+            psc.SqlConnectionString = Properties.Settings.Default.SqlConnectionString;
+            psc.MapperFactoryClassName = Properties.Settings.Default.MapperFactoryClassName;
+            psc.MapperFactoryDllName = Properties.Settings.Default.MapperFactoryDllName;
+            return psc;
         }
 
 
@@ -43,7 +57,7 @@ namespace Agenda
         /// Funzione che viene richiamata quando viene scatenato l'evento Load
         /// Load è una condizione che scatta quando il programma parte e il form1 viene caricato
         /// </summary>
-        
+
         private void Form1_Load(object sender, EventArgs e)
         {
 

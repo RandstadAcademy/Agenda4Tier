@@ -16,6 +16,7 @@ namespace PersistenceSystem.abstractions
         private string _dbType = "Access";
         private static DBFacade _instance;
         private IMapperFactory _mapperFactory;
+        private PersistenceSystemConfig _persistenceSystemConfig;
 
         public IMapperFactory MapperFactory
         {
@@ -25,12 +26,18 @@ namespace PersistenceSystem.abstractions
             }
         }
 
+        internal PersistenceSystemConfig PersistenceSystemConfig
+        {
+            get
+            {
+                return _persistenceSystemConfig;
+            }
+        }
 
         private DBFacade()
         {
-            ObjectHandle handle =  Activator.CreateInstance("AgendaData", "AgendaData.mermec.MapperFactory");
-            _mapperFactory = (IMapperFactory)handle.Unwrap();
         }
+
         public static DBFacade Instance()
         {
             if (_instance == null)
@@ -39,23 +46,30 @@ namespace PersistenceSystem.abstractions
             return _instance;
         }
 
-        public void InitializeDB(string dbType)
+        public void InitializeSystem(PersistenceSystemConfig persistenceSystemConfig)
         {
-            _dbType = dbType;
-
-           
+            _persistenceSystemConfig = persistenceSystemConfig;
+            ObjectHandle handle = Activator.CreateInstance(PersistenceSystemConfig.MapperFactoryDllName, PersistenceSystemConfig.MapperFactoryClassName);
+            _mapperFactory = (IMapperFactory)handle.Unwrap();
         }
 
-
+        public void InitializeDB(string dbType)
+        {
+            CheckConfig();
+            _dbType = dbType;
+            
+        }
 
         public AbstractDomainObject GetById(string type, int id)
         {
+            CheckConfig();
             return _mapperFactory
                 .GetMapperByName(type, _dbType)
                 .GetById(id);
         }
         public List<AbstractDomainObject> GetAll(string type)
         {
+            CheckConfig();
             return _mapperFactory
                .GetMapperByName(type, _dbType)
                .GetAll();
@@ -63,7 +77,7 @@ namespace PersistenceSystem.abstractions
 
         public void SaveOrUpdate(AbstractDomainObject data)
         {
-
+            CheckConfig();
             String namew = data.GetType().Name;
             _mapperFactory
                .GetMapperByName(namew, _dbType)
@@ -72,10 +86,17 @@ namespace PersistenceSystem.abstractions
 
         public void Delete(AbstractDomainObject data)
         {
+            CheckConfig();
             String namew = data.GetType().Name;
             _mapperFactory
                .GetMapperByName(namew, _dbType)
                .Delete(data);
+        }
+
+        private void CheckConfig()
+        {
+            if (PersistenceSystemConfig == null)
+                throw new Exception("System not initialized");
         }
     }
 }

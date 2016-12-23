@@ -50,6 +50,7 @@
     <Compile Include="MessageFactory.cs" />
     <Compile Include="MessagePayload.cs" />
     <Compile Include="Message.cs" />
+    <Compile Include="MessageServiceConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CompositeMessage\TelegramService.cs" />
   </ItemGroup>

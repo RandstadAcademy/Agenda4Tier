@@ -22,7 +22,8 @@ namespace PersistenceSystem.abstractions
 
         protected override string GetConnectionString()
         {
-            return @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=c:\\users\\fgran\\TestMermec.mdb";
+            return DBFacade.Instance().PersistenceSystemConfig.AccessConnectionString;
+            //return @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=c:\\users\\fgran\\TestMermec.mdb";
         }
     }
 }

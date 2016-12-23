@@ -5,5 +5,17 @@
     <Setting Name="DBType" Type="System.String" Scope="User">
       <Value Profile="(Default)">Access</Value>
     </Setting>
+    <Setting Name="MapperFactoryDllName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">AgendaData</Value>
+    </Setting>
+    <Setting Name="MapperFactoryClassName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">AgendaData.mermec.MapperFactory</Value>
+    </Setting>
+    <Setting Name="SqlConnectionString" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Data Source =.\NOESIS; Initial Catalog = Mermec; User ID =RegUsr; Password =RegUsr</Value>
+    </Setting>
+    <Setting Name="AccessConnectionString" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Provider=Microsoft.Jet.OLEDB.4.0;Data Source=c:\\users\\fgran\\TestMermec.mdb</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

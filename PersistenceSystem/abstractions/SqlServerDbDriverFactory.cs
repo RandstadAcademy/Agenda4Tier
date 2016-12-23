@@ -22,7 +22,8 @@ namespace PersistenceSystem.abstractions
 
         protected override string GetConnectionString()
         {
-            return @"Data Source =.\NOESIS; Initial Catalog = Mermec; User ID =RegUsr; Password =RegUsr";
+            return DBFacade.Instance().PersistenceSystemConfig.SqlConnectionString;
+            //return @"Data Source =.\NOESIS; Initial Catalog = Mermec; User ID =RegUsr; Password =RegUsr";
         }
     }
 }
