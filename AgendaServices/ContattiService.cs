@@ -17,7 +17,7 @@ namespace AgendaServices
     /// Questo livello serve anche per implementare una logica che non vada a intaccare il nostro dominio
     /// o le classi che si occupano di estrarre i dati
     /// </summary>
-    public class ContattiService
+    public class ContattiService : IContattiService
     {
         /// <summary>
         /// Chiama il livello inferiore per richiedere un contatto specifico
@@ -25,7 +25,6 @@ namespace AgendaServices
         /// <param name="id">Id da passare al livello inferiore</param>
         public Contatto GetByID(int id)
         {
-           
             return (Contatto)DBFacade.Instance().GetById("Contatto" ,id) ;
         }
 

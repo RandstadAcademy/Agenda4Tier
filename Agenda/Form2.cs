@@ -27,6 +27,7 @@ namespace Agenda
         //private int ID = 0;
 
         private Contatto _current;
+        private IContattiService svc = new LoggedContattiService(new ContattiService());
 
         /// <summary>
         /// Costruttore della classe form2 , la funzione InitializeComponent() è di sistema e viene aggiunta
@@ -112,11 +113,11 @@ namespace Agenda
 
 
                 //richiamo il mio service per effettuare l'insert o l'update
-                ContattiService cs = new ContattiService();
+                
 
 
                 //Chiamo il servizio SaveOrUpdate passando in input il contatto da salvare o aggiornare
-                cs.SaveOrUpdate(contatto);
+                svc.SaveOrUpdate(contatto);
                 //imposto la variabile che serve al form1 per continuare
                 this.DialogResult = DialogResult.OK;
                 this.Close();

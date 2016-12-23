@@ -25,6 +25,7 @@ namespace Agenda
         /// Proprietà IDSelected che rappresenta la riga della listBox selezionata
         /// </summary>
         private int IDSelected { get; set; }
+        private IContattiService svc = new LoggedContattiService(new ContattiService());
 
         /// <summary>
         /// Costruttore di Form1 , InitializeComponents istanzia tutti i componenti del form e viene
@@ -49,7 +50,6 @@ namespace Agenda
 
             //Istanziamo un oggetto ContattiService che si occuperà di andare a recuperare i contatti
             //inoltrando la richiesta ai livelli inferiori dell'architettura
-            ContattiService svc = new ContattiService();
 
             //qui richiamo la funzione del Service che altro non fa che richiamare un oggetto dei livelli
             //inferiori
@@ -82,7 +82,6 @@ namespace Agenda
         public void LoadData()
         {
             //istanzio un service per i contatti
-            ContattiService svc = new ContattiService();
 
             //estraggo tutti i contatti comunicando con i livelli inferiori
             List<Contatto> contatti = svc.GetAll();
@@ -118,7 +117,6 @@ namespace Agenda
             {
 
                 //istanzio il service
-                ContattiService svc = new ContattiService();
 
                 //verifico che il mio ID che ho settato quando ho evidenziato
                 //un contatto in listBox sia valorizzato
@@ -206,8 +204,6 @@ namespace Agenda
         private void buttonExport_Click_1(object sender, EventArgs e)
         {
             //istanzio il service
-            ContattiService svc = new ContattiService();
-
             Contatto contatto = null;
 
             //Setto il filtro estensione

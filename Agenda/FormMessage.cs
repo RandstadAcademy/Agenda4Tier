@@ -15,9 +15,7 @@ namespace Agenda
 {
     public partial class FormMessage : Form
     {
-        private int ID = 0;
         private Contatto contatto = null;
-        
 
         public FormMessage()
         {
@@ -61,13 +59,7 @@ namespace Agenda
                 messagePayload.TypesList = contatto.MessageTypes;
                 MessaggiServices service = new MessaggiServices();
                 service.SendMessage(messagePayload);
-
-                //messaggio.Body = txtboxMsg.Text;
-                //messaggio.MessageObject = txtboxObjectMsg.Text;
-                //messaggio.From = "randstadacademydotnet@gmail.com";
-                //messaggio.To = contatto.Mail;
-                //messaggio.Tel = contatto.Tel;
-                //ms.SendMessage(contatto, messaggio);
+                
                 MessageBox.Show("Messaggio inviato");
             }else
             {
