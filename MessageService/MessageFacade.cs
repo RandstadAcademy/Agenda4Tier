@@ -10,6 +10,26 @@ namespace MessageService
     {
 
         private static MessageFacade _instance;
+        private MessageServiceConfig _messageServiceConfig;
+
+        internal MessageServiceConfig MessageServiceConfig
+        {
+            get
+            {
+                return _messageServiceConfig;
+            }
+
+            
+        }
+
+        public void InitializeSystem(MessageServiceConfig messageServiceConfig)
+        {
+
+            _messageServiceConfig = messageServiceConfig;
+
+        }
+
+
 
         private MessageFacade()
         {

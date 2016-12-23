@@ -62,6 +62,8 @@ namespace Agenda
         {
 
 
+
+
             //Istanziamo un oggetto ContattiService che si occuperà di andare a recuperare i contatti
             //inoltrando la richiesta ai livelli inferiori dell'architettura
 

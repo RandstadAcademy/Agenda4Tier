@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace MessageService
 {
-    class MessageServiceConfig
+    public class MessageServiceConfig
     {
+
+        public string SmtpClient { get; set; }
+        public string MailFrom { get; set }
+        public string User{ get; set; }
+        public string Password { get; set; }
+        public int Port { get; set; }
     }
-}

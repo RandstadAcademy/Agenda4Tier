@@ -14,18 +14,19 @@ namespace MessageService.CompositeMessage
             
         }
 
+
         public void Send(MessagePayload messagePayload)
         {
             try
             {
                 System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage();
-                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
-                mail.From = new MailAddress("randstadacademydotnet@gmail.com");
+                SmtpClient SmtpServer = new SmtpClient(MessageFacade.Instance().MessageServiceConfig.SmtpClient);
+                mail.From = new MailAddress(MessageFacade.Instance().MessageServiceConfig.MailFrom);
                 mail.To.Add(messagePayload.Message.Mail);
                 mail.Subject = messagePayload.Message.Object;
                 mail.Body = messagePayload.Message.Body;
                 SmtpServer.Port = 587;
-                SmtpServer.Credentials = new System.Net.NetworkCredential("randstadacademydotnet@gmail.com", "Casalino2016");
+                SmtpServer.Credentials = new System.Net.NetworkCredential(MessageFacade.Instance().MessageServiceConfig.User, MessageFacade.Instance().MessageServiceConfig.Password);
                 SmtpServer.EnableSsl = true;
                 SmtpServer.Send(mail);
             }
