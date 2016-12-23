@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.OleDb;
 using System.Data;
+using System.Diagnostics;
 
 namespace PersistenceSystem.abstractions.mappers
 {
@@ -28,8 +29,8 @@ namespace PersistenceSystem.abstractions.mappers
         public virtual AbstractDomainObject GetById(int Id)
         {
             //per poter fare una chiamata al DB devo avere due oggetti, ovvero una connessione e un comando
-            IDbConnection conn = DbDriversFactory.GetConnection(_dbType);
-            IDbCommand cmd =  DbDriversFactory.GetCommand(_dbType,conn,"Select * from "+ _table + " where ID = " + Id.ToString() + "");
+            IDbConnection conn = AbstractDbDriverFactory.GetDbDrivers(_dbType).GetConnection();
+            IDbCommand cmd = AbstractDbDriverFactory.GetDbDrivers(_dbType).GetCommand(conn,"Select * from "+ _table + " where ID = " + Id.ToString() + "");
 
             try
             {
@@ -71,8 +72,8 @@ namespace PersistenceSystem.abstractions.mappers
 
         public virtual void Delete(AbstractDomainObject data)
         {
-            IDbConnection conn = DbDriversFactory.GetConnection(_dbType);
-            IDbCommand cmd = DbDriversFactory.GetCommand(_dbType, conn, @"Delete from " + _table + " where ID = " + data.Id.ToString());
+            IDbConnection conn = AbstractDbDriverFactory.GetDbDrivers(_dbType).GetConnection();
+            IDbCommand cmd = AbstractDbDriverFactory.GetDbDrivers(_dbType).GetCommand(conn, @"Delete from " + _table + " where ID = " + data.Id.ToString());
 
             try
             {
@@ -96,8 +97,8 @@ namespace PersistenceSystem.abstractions.mappers
 
         public virtual List<AbstractDomainObject> GetAll()
         {
-            IDbConnection conn = DbDriversFactory.GetConnection(_dbType);
-            IDbCommand cmd = DbDriversFactory.GetCommand(_dbType, conn, "Select * from " + _table);
+            IDbConnection conn = AbstractDbDriverFactory.GetDbDrivers(_dbType).GetConnection();
+            IDbCommand cmd = AbstractDbDriverFactory.GetDbDrivers(_dbType).GetCommand(conn, "Select * from " + _table);
 
             List<AbstractDomainObject> list = null;
 
@@ -118,9 +119,9 @@ namespace PersistenceSystem.abstractions.mappers
                 r.Close();
                 return list;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Console.Write("");
+                Debug.WriteLine(ex.Message);
             }
             finally
             {
@@ -148,8 +149,8 @@ namespace PersistenceSystem.abstractions.mappers
 
         private void DoInsert(AbstractDomainObject data)
         {
-            IDbConnection conn = DbDriversFactory.GetConnection(_dbType);
-            IDbCommand cmd = DbDriversFactory.GetCommand(_dbType, conn, _insertQuery);
+            IDbConnection conn = AbstractDbDriverFactory.GetDbDrivers(_dbType).GetConnection();
+            IDbCommand cmd = AbstractDbDriverFactory.GetDbDrivers(_dbType).GetCommand(conn, _insertQuery);
 
             try
             {
@@ -175,8 +176,8 @@ namespace PersistenceSystem.abstractions.mappers
 
         private void DoUpdate(AbstractDomainObject data)
         {
-            IDbConnection conn = DbDriversFactory.GetConnection(_dbType);
-            IDbCommand cmd = DbDriversFactory.GetCommand(_dbType, conn, _updateQuery + " where Id = " + data.Id.ToString());
+            IDbConnection conn = AbstractDbDriverFactory.GetDbDrivers(_dbType).GetConnection();
+            IDbCommand cmd = AbstractDbDriverFactory.GetDbDrivers(_dbType).GetCommand(conn, _updateQuery + " where Id = " + data.Id.ToString());
           
 
             try
