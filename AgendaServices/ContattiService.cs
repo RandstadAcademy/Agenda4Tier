@@ -40,8 +40,7 @@ namespace AgendaServices
             //TomD88: questa fix serve giusto a far partire il progetto.Questo controllo non dovrebbe
             //        andare qui.Ricordatevi di controllarvi le connectionString e scegliere eventualmente dove
             //        aggiungere questo controllo
-            if (l != null)
-            l.ForEach(d => c.Add((Contatto)d));
+            if (l != null) l.ForEach(d => c.Add((Contatto)d));
 
             return c;
         }
