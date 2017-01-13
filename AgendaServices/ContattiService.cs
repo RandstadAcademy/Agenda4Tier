@@ -3,6 +3,7 @@ using AgendaData.mermec;
 using AgendaDomain;
 using PersistenceSystem;
 using PersistenceSystem.abstractions;
+using PersistenceSystem.querying;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -77,5 +78,33 @@ namespace AgendaServices
             DBFacade.Instance().Delete(ng);
         }
 
+        public List<Contatto> Find(string text)
+        {
+            Query q = DBFacade.Instance().CreateQuery();
+
+            AbstractCriteria c = new CompositeCriteria(BooleaOperator.Or);
+
+            AbstractCriteria name = new MatchCriteria("Name1", text);
+            AbstractCriteria tel = new MatchCriteria("Tel", text);
+            AbstractCriteria mail = new MatchCriteria("Mail", text);
+            AbstractCriteria type = new MatchCriteria("MessageType", text);
+
+            //c.Add(name);
+            //c.Add(tel);
+            //c.Add(mail);
+            //c.Add(type);
+
+            q.AddWhereclause(c);
+
+            List<AbstractDomainObject> l = DBFacade.Instance().Find("Contatto", q);
+
+            List<Contatto> c1 = new List<Contatto>();
+            if (l != null) l.ForEach(d => c1.Add((Contatto)d));
+
+            return c1;
+
+        }
+
+       
     }
 }

@@ -50,6 +50,12 @@
     <Compile Include="abstractions\SqlServerDbDriverFactory.cs" />
     <Compile Include="PersistenceSystemConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="querying\AbstractCriteria.cs" />
+    <Compile Include="querying\BooleaOperator.cs" />
+    <Compile Include="querying\CompositeCriteria.cs" />
+    <Compile Include="querying\MatchCriteria.cs" />
+    <Compile Include="querying\MatchEqualCriteria.cs" />
+    <Compile Include="querying\Query.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

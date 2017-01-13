@@ -22,6 +22,11 @@ namespace AgendaServices
             _contattiService.Delete(id);
         }
 
+        public List<Contatto> Find(string text)
+        {
+            return _contattiService.Find(text);
+        }
+
         virtual public List<Contatto> GetAll()
         {
             return _contattiService.GetAll();

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.Remoting;
 using System.Text;
 using System.Threading.Tasks;
+using PersistenceSystem.querying;
 
 namespace PersistenceSystem.abstractions
 {
@@ -97,6 +98,18 @@ namespace PersistenceSystem.abstractions
         {
             if (PersistenceSystemConfig == null)
                 throw new Exception("System not initialized");
+        }
+
+        public List<AbstractDomainObject> Find(string type, Query q)
+        {
+            return _mapperFactory
+               .GetMapperByName(type, _dbType)
+               .find(q);
+        }
+
+        public Query CreateQuery()
+        {
+            return new Query();
         }
     }
 }

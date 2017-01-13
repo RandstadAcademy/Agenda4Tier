@@ -267,5 +267,12 @@ namespace Agenda
             DBFacade.Instance().InitializeDB(Properties.Settings.Default.DBType);
             LoadData();
         }
+
+        private void cmdSearch_Click(object sender, EventArgs e)
+        {
+            List<Contatto> result = svc.Find(txtSearch.Text);
+
+            listBox1.DataSource = result;
+        }
     }
 }

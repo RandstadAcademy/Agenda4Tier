@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.OleDb;
 using System.Data;
 using System.Diagnostics;
+using PersistenceSystem.querying;
 
 namespace PersistenceSystem.abstractions.mappers
 {
@@ -203,5 +204,51 @@ namespace PersistenceSystem.abstractions.mappers
         }
 
         protected abstract void SetParameters(AbstractDomainObject data,  IDbCommand cmd);
+
+        public List<AbstractDomainObject> find(Query query)
+        {
+            query.SetTable(_table);
+            string sql = query.GenerateQuery();
+
+
+            IDbConnection conn = AbstractDbDriverFactory.GetDbDrivers(_dbType).GetConnection();
+            IDbCommand cmd = AbstractDbDriverFactory.GetDbDrivers(_dbType).GetCommand(conn, sql);
+
+            List<AbstractDomainObject> list = null;
+
+            try
+            {
+                //uguale a prima solo che qui riempio una lista
+                conn.Open();
+                IDataReader r = cmd.ExecuteReader();
+                list = new List<AbstractDomainObject>();
+
+                while (r.Read())
+                {
+                    AbstractDomainObject obj = DoLoad(Convert.ToInt32(r["ID"]), r);
+
+                    list.Add(obj);
+                }
+
+                r.Close();
+                return list;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (conn.State == System.Data.ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+                cmd.Dispose();
+            }
+
+            return list;
+
+
+        }
     }
 }

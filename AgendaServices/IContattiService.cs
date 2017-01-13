@@ -14,6 +14,6 @@ namespace AgendaServices
         List<Contatto> GetAll();
         void SaveOrUpdate(Contatto contatto);
         void Delete(int id);
-
+        List<Contatto> Find(string text);
     }
 }
