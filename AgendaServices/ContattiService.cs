@@ -82,19 +82,49 @@ namespace AgendaServices
         {
             Query q = DBFacade.Instance().CreateQuery();
 
-            AbstractCriteria c = new CompositeCriteria(BooleaOperator.Or);
+            //q.AddCriteria(_CRITERIA.MAtchCriteria())
 
-            AbstractCriteria name = new MatchCriteria("Name1", text);
-            AbstractCriteria tel = new MatchCriteria("Tel", text);
-            AbstractCriteria mail = new MatchCriteria("Mail", text);
-            AbstractCriteria type = new MatchCriteria("MessageType", text);
+            //AbstractCriteria c = new CompositeCriteria(BooleaOperator.Or);
+
+            //AbstractCriteria name = new MatchCriteria("Name1", text);
+            //AbstractCriteria tel = new MatchCriteria("Tel", text);
+            //AbstractCriteria mail = new MatchCriteria("Mail", text);
+            //AbstractCriteria type = new MatchCriteria("MessageType", text);
 
             //c.Add(name);
             //c.Add(tel);
             //c.Add(mail);
             //c.Add(type);
+            //q.AddWhereclause(c);
+            #region a
+            //second attempt!
+            //AbstractCriteria c = new CompositeCriteria(BooleaOperator.Or);
 
-            q.AddWhereclause(c);
+            //AbstractCriteria cSx = new CompositeCriteria(BooleaOperator.And);
+            //AbstractCriteria cDx = new CompositeCriteria(BooleaOperator.And);
+
+            //c.Add(cSx);
+            //c.Add(cDx);
+
+            //cSx.Add(new MatchCriteria("Campo1", text));
+            //cSx.Add(new MatchCriteria("Campo2", text));
+
+            //cDx.Add(new MatchCriteria("Campo3", text));
+            //cDx.Add(new MatchCriteria("Campo4", text));
+            #endregion a
+
+            //q.AddCompositeCriteria(BooleaOperator.Or)
+            //.AddCriteria(CriteriaFactory.MatchCriteria("Name1", text))
+            //.AddCriteria(CriteriaFactory.MatchCriteria("Tel", text))
+            //.AddCriteria(CriteriaFactory.MatchCriteria("Mail", text))
+            //.AddCriteria(CriteriaFactory.MatchCriteria("MessageType", text))
+            //.EndComposite();
+
+            //q.AddCriteria(CriteriaFactory.MatchCriteria("Name1", text)).AddCriteria(CriteriaFactory.MatchCriteria("Name1", text));
+
+            q.AddCriteria(CriteriaFactory.MatchCriteria("Name1", text));
+
+            
 
             List<AbstractDomainObject> l = DBFacade.Instance().Find("Contatto", q);
 

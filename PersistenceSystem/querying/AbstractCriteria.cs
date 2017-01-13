@@ -16,6 +16,7 @@ namespace PersistenceSystem.querying
         }
         protected string _operator;
         public abstract string Evaluate();
+        
 
     }
 }

@@ -16,7 +16,7 @@ namespace PersistenceSystem.querying
         {
             _operator = "like";
             _columnName = columnName;
-            _value = "'*" + value + "*'";
+            _value = "'%" + value + "%'";
         }
 
 
