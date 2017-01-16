@@ -10,7 +10,7 @@ namespace AgendaDomain
     /// <summary>
     /// Questa classe fa parte del nostro modello di dominio e rappresenta un Contatto in agenda
     /// </summary>
-    public class Contatto: AbstractDomainObject
+    public class Contatto: AbstractDomainObject 
     {
         //mi setto una serie di proprietà pubbliche
       
@@ -19,6 +19,19 @@ namespace AgendaDomain
         public string Mail { get; set; }
         private List<string> _messageTypes;
 
+
+        private IList<Messaggio> _messaggi;
+        public IList<Messaggio> Messaggi
+        {
+            get
+            {
+                return _messaggi;
+            }
+            set
+            {
+                _messaggi = value;
+            }
+        }
 
 
         public List<string> MessageTypes

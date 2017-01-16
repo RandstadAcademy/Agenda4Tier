@@ -141,10 +141,9 @@ namespace Agenda
 
         private void btnVisualizzaMessaggi_Click(object sender, EventArgs e)
         {
-            MessaggiServices msgService = new MessaggiServices();
 
-            VisualizzaMessaggiPerContattoForm VM = new VisualizzaMessaggiPerContattoForm(msgService.GetMessageList(_current));
-            VM.Show();
+            VisualizzaMessaggiPerContattoForm vm = new VisualizzaMessaggiPerContattoForm(_current.Messaggi);//new MessaggiServices().GetMessageList(_current));
+            vm.Show();
            
         }
     }

@@ -48,6 +48,7 @@
     <Compile Include="abstractions\mappers\IDBMapper.cs" />
     <Compile Include="abstractions\mappers\IMapperFactory.cs" />
     <Compile Include="abstractions\SqlServerDbDriverFactory.cs" />
+    <Compile Include="abstractions\VirtualLazyList.cs" />
     <Compile Include="PersistenceSystemConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="querying\AbstractCriteria.cs" />

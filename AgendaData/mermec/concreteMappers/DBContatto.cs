@@ -1,7 +1,9 @@
 ﻿
 using AgendaDomain;
 using PersistenceSystem;
+using PersistenceSystem.abstractions;
 using PersistenceSystem.abstractions.mappers;
+using PersistenceSystem.querying;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -38,8 +40,15 @@ namespace AgendaData.mermec.concreteMappers
             contatto.Tel = r["Tel"].ToString();
             contatto.Name = r["Name1"].ToString();
             contatto.MessageTypes = new List<string>(RetrieveMessageTypesArray(r));
+
+
+            contatto.Messaggi = new MessaggiLazyList(new DBMessaggio(_dbType), ID);
+
+
             return contatto;
         }
+
+        
 
         private  string[] RetrieveMessageTypesArray(IDataReader r)
         {

@@ -8,22 +8,26 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AgendaDomain;
+using System.Collections;
 
 namespace Agenda
 {
     public partial class VisualizzaMessaggiPerContattoForm : Form
     {
-        private List<Messaggio> _list;
+        private IList _list = new ArrayList();
 
         public VisualizzaMessaggiPerContattoForm()
         {
             InitializeComponent();
         }
 
-        public VisualizzaMessaggiPerContattoForm(List<Messaggio> list):this()
+        public VisualizzaMessaggiPerContattoForm(IList<Messaggio> list):this()
         {
-           
-            this._list = list;
+
+            foreach (var item in list)
+            {
+                _list.Add(item);
+            }
         }
 
         private void VisualizzaMessaggiPerContattoForm_Load(object sender, EventArgs e)
