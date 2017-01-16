@@ -7,16 +7,15 @@ using AgendaDomain;
 using AgendaData;
 using MessageService;
 using PersistenceSystem.abstractions;
+using PersistenceSystem.querying;
+using PersistenceSystem;
 
 namespace AgendaServices
 {
     public class MessaggiServices
     {
-
         public void SendMessage(MessagePayload messagePayload,Contatto contatto)
         {
-
-
             Messaggio msg = new Messaggio();
             msg.MessageBody = messagePayload.Message.Body;
             msg.MessageObject = messagePayload.Message.Object;
@@ -34,10 +33,17 @@ namespace AgendaServices
                 DBFacade.Instance().Delete(msg);
                 throw ex;
             }
-            
-
-
         }
-        
+
+        public List<Messaggio> GetMessageList(Contatto contatto)
+        {
+            Query q = DBFacade.Instance().CreateQuery();
+            q.AddCriteria(CriteriaFactory.EqualsCriteria("Id_Contatto", contatto.Id));
+            List<AbstractDomainObject> l = DBFacade.Instance().Find("Messaggio", q);
+            return l.Cast<Messaggio>().ToList<Messaggio>();
+            //List<Messaggio> c1 = new List<Messaggio>();
+            //if (l != null) l.ForEach(d => c1.Add((Messaggio)d));
+            //return c1;
+        }
     }
 }

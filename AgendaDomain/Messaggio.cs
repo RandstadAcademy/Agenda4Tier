@@ -18,11 +18,7 @@ namespace AgendaDomain
 
         public Contatto Recipient { get; set; }
 
-        /*!(String.IsNullOrEmpty(txtboxObjectMsg.Text) ||
-                          String.IsNullOrEmpty(txtboxMsg.Text))) || 
-                          (!String.IsNullOrEmpty(txtboxMsg.Text)
-                          && txtboxObjectMsg.Enabled==false)*/
-
+      
         public override string DoValidate()
         {
             string MsgErrore = "";
@@ -43,6 +39,10 @@ namespace AgendaDomain
             return MsgErrore;
         }
 
+        public override string ToString()
+        {
+            return this.MessageType + " - " + this.MessageObject + " - " + this.MessageBody;
+        }
 
     }
 }

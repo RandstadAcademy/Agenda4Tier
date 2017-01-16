@@ -54,6 +54,7 @@
     <Compile Include="querying\BooleaOperator.cs" />
     <Compile Include="querying\CompositeCriteria.cs" />
     <Compile Include="querying\CriteriaFactory.cs" />
+    <Compile Include="querying\EqualCriteria.cs" />
     <Compile Include="querying\MatchCriteria.cs" />
     <Compile Include="querying\MatchEqualCriteria.cs" />
     <Compile Include="querying\Query.cs" />

@@ -24,6 +24,9 @@ namespace PersistenceSystem.querying
             return new CompositeCriteria(booleanOperator);
         }
 
-
+        public static AbstractCriteria EqualsCriteria(string columnName, int value)
+        {
+            return new EqualCriteria(columnName, value);
+        }
     }
 }
