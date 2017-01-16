@@ -17,10 +17,7 @@ namespace Agenda
     {
         private Contatto contatto = null;
 
-        public FormMessage()
-        {
-            InitializeComponent();
-        }
+       
 
         public FormMessage(Contatto contatto)
         {
@@ -44,10 +41,7 @@ namespace Agenda
         private void button1_Click(object sender, EventArgs e)
         {
 
-            if ((!(String.IsNullOrEmpty(txtboxObjectMsg.Text) ||
-                  String.IsNullOrEmpty(txtboxMsg.Text))) || 
-                  (!String.IsNullOrEmpty(txtboxMsg.Text)
-                  && txtboxObjectMsg.Enabled==false))
+            try
             {
                 MessagePayload messagePayload = new MessagePayload();
                 MessageService.Message message = new MessageService.Message();
@@ -58,13 +52,16 @@ namespace Agenda
                 messagePayload.Message = message;
                 messagePayload.TypesList = contatto.MessageTypes;
                 MessaggiServices service = new MessaggiServices();
-                service.SendMessage(messagePayload);
-                
-                MessageBox.Show("Messaggio inviato");
-            }else
-            {
-                MessageBox.Show("Si prega di inserire tutti i campi");
+
+                service.SendMessage(messagePayload, contatto);
+                MessageBox.Show("Messaggio Inviato");
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+                
+            
         }
 
         private void LoadData()

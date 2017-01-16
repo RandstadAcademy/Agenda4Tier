@@ -35,7 +35,8 @@ namespace Agenda
         public Form1()
         {
             InitializeComponent();
-            DBFacade.Instance().InitializeSystem(CreateObjectFromProperties());
+            PersistenceSystemConfig psc = CreateObjectFromProperties();
+            DBFacade.Instance().InitializeSystem(psc);
                
 
             //DBFacade.Instance().MapperFactory = new MapperFactory();

@@ -12,8 +12,10 @@ namespace PersistenceSystem.abstractions.mappers
 {
     public abstract class AbstractMapper : IDBMapper
     {
-       
-        private string _dbType;
+
+        //protected Dictionary<int, AbstractDomainObject> _cache = new Dictionary<int, AbstractDomainObject>();
+
+        protected string _dbType;
         protected string _table = "";
 
         protected string _updateQuery;
@@ -29,6 +31,11 @@ namespace PersistenceSystem.abstractions.mappers
 
         public virtual AbstractDomainObject GetById(int Id)
         {
+
+            //AbstractDomainObject result = TryRetrieveFromCache(Id);
+            //if (result != null)
+            //    return result;
+
             //per poter fare una chiamata al DB devo avere due oggetti, ovvero una connessione e un comando
             IDbConnection conn = AbstractDbDriverFactory.GetDbDrivers(_dbType).GetConnection();
             IDbCommand cmd = AbstractDbDriverFactory.GetDbDrivers(_dbType).GetCommand(conn,"Select * from "+ _table + " where ID = " + Id.ToString() + "");
@@ -67,6 +74,13 @@ namespace PersistenceSystem.abstractions.mappers
                 cmd.Dispose();
             }
         }
+
+        //protected AbstractDomainObject TryRetrieveFromCache(int id)
+        //{
+        //    if (_cache.ContainsKey(id))
+        //        return _cache[id];
+        //    return null;
+        //}
 
         protected abstract AbstractDomainObject DoLoad(int id, IDataReader r);
        
@@ -138,6 +152,7 @@ namespace PersistenceSystem.abstractions.mappers
 
         public virtual void SaveOrUpdate(AbstractDomainObject data)
         {
+            data.Validate();
             //se l'id del contatto è 0 ovvero non esiste eseguo una insert altrimenti faccio una update
             if (data.Id == 0)
             {
@@ -160,11 +175,13 @@ namespace PersistenceSystem.abstractions.mappers
                 SetParameters(data, cmd);
 
                 cmd.ExecuteNonQuery();
+
+
+                cmd.CommandText = "Select @@Identity";
+                data.Id = Convert.ToInt32(cmd.ExecuteScalar());
+
             }
-            catch (Exception)
-            {
-                Console.Write("");
-            }
+            
             finally
             {
                 if (conn.State == System.Data.ConnectionState.Open)

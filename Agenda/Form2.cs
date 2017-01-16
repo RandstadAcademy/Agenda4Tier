@@ -93,13 +93,10 @@ namespace Agenda
 
         private void Salva_Click(object sender, EventArgs e)
         {
-            
 
-            ////Verifico che ogni textBox non sia lasciata vuota
-            //if (!(String.IsNullOrEmpty(txtNome.Text) || 
-            //        String.IsNullOrEmpty(txtMail.Text) || 
-            //        String.IsNullOrEmpty(txtTelefono.Text)))
-            //{
+
+            try
+            {
 
                 //mi creo un contatto e me lo valorizzo con i valori presi dalle textbox
                 Contatto contatto = new Contatto();
@@ -110,24 +107,23 @@ namespace Agenda
                 contatto.Mail = txtMail.Text;
                 SetMessageType(contatto);
 
-
-
                 //richiamo il mio service per effettuare l'insert o l'update
                 
-
-
                 //Chiamo il servizio SaveOrUpdate passando in input il contatto da salvare o aggiornare
                 svc.SaveOrUpdate(contatto);
                 //imposto la variabile che serve al form1 per continuare
                 this.DialogResult = DialogResult.OK;
                 this.Close();
-            //}
-            //else
-            //{
-                //Verifico che tutti i campi siano stati inseriti prima di procedere
-                //all'aggiornamento o al salvataggio
-                //MessageBox.Show("Inserire tutti i campi");
-            //}
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+                
+            
         }
 
         private void SetMessageType(Contatto contatto)

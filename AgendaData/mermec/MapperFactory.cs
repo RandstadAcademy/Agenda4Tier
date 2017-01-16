@@ -16,6 +16,10 @@ namespace AgendaData.mermec
             {
                 return new DBContatto(dbType);
             }
+            else if (type.Equals("Messaggio"))
+            {
+                return new DBMessaggio(dbType);
+            }
             return null;
         }
     }

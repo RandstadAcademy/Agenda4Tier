@@ -25,7 +25,7 @@ namespace Agenda.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Access")]
+        [global::System.Configuration.DefaultSettingValueAttribute("SqlServer")]
         public string DBType {
             get {
                 return ((string)(this["DBType"]));
@@ -74,7 +74,7 @@ namespace Agenda.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=c:\\\\users\\\\fgran\\\\TestMermec.mdb")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\\\\Users\\\\fgran\\\\estMermec.mdb")]
         public string AccessConnectionString {
             get {
                 return ((string)(this["AccessConnectionString"]));

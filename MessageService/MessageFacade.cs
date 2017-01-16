@@ -45,8 +45,17 @@ namespace MessageService
 
         public void Send(MessagePayload messagePayload)
         {
+
+            if (String.IsNullOrEmpty(messagePayload.Message.Object) || 
+                    String.IsNullOrEmpty(messagePayload.Message.Body))
+            {
+                throw new Exception("Il corpo o l'oggetto sono vuoti");
+            }
             MessageFactory factory = new MessageFactory();
             factory.GetMessageService(messagePayload.TypesList).Send(messagePayload);
+            
+
+            
         }
 
     }

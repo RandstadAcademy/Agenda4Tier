@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="mermec\concreteMappers\DBContatto.cs" />
+    <Compile Include="mermec\concreteMappers\DBMessaggio.cs" />
     <Compile Include="mermec\MapperFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

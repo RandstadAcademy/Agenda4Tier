@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="DBType" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Access</Value>
+      <Value Profile="(Default)">SqlServer</Value>
     </Setting>
     <Setting Name="MapperFactoryDllName" Type="System.String" Scope="User">
       <Value Profile="(Default)">AgendaData</Value>
@@ -15,7 +15,7 @@
       <Value Profile="(Default)">Data Source =.\NOESIS; Initial Catalog = Mermec; User ID =RegUsr; Password =RegUsr</Value>
     </Setting>
     <Setting Name="AccessConnectionString" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Provider=Microsoft.Jet.OLEDB.4.0;Data Source=c:\\users\\fgran\\TestMermec.mdb</Value>
+      <Value Profile="(Default)">Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\\Users\\fgran\\estMermec.mdb</Value>
     </Setting>
   </Settings>
 </SettingsFile>

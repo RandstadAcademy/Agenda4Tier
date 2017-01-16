@@ -50,6 +50,7 @@ namespace PersistenceSystem.abstractions
         public void InitializeSystem(PersistenceSystemConfig persistenceSystemConfig)
         {
             _persistenceSystemConfig = persistenceSystemConfig;
+            _dbType = persistenceSystemConfig.DBType;
             ObjectHandle handle = Activator.CreateInstance(PersistenceSystemConfig.MapperFactoryDllName, PersistenceSystemConfig.MapperFactoryClassName);
             _mapperFactory = (IMapperFactory)handle.Unwrap();
         }
@@ -78,6 +79,9 @@ namespace PersistenceSystem.abstractions
 
         public void SaveOrUpdate(AbstractDomainObject data)
         {
+            //if(!Ringo.IsNullOrEmpty() && Ringo.Length>0) 
+                //gangOfRandazzo.Eat(Ringo);
+            // 
             CheckConfig();
             String namew = data.GetType().Name;
             _mapperFactory

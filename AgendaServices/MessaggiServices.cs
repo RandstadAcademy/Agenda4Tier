@@ -6,15 +6,37 @@ using System.Threading.Tasks;
 using AgendaDomain;
 using AgendaData;
 using MessageService;
+using PersistenceSystem.abstractions;
 
 namespace AgendaServices
 {
     public class MessaggiServices
     {
 
-        public void SendMessage(MessagePayload messagePayload)
+        public void SendMessage(MessagePayload messagePayload,Contatto contatto)
         {
-            MessageFacade.Instance().Send(messagePayload);
+
+
+            Messaggio msg = new Messaggio();
+            msg.MessageBody = messagePayload.Message.Body;
+            msg.MessageObject = messagePayload.Message.Object;
+            msg.MessageType = String.Join<string>(",", contatto.MessageTypes);
+            msg.SendDate = DateTime.Today;
+            msg.Recipient = contatto;
+
+            DBFacade.Instance().SaveOrUpdate(msg);
+            try
+            { 
+                MessageFacade.Instance().Send(messagePayload);
+            }
+            catch (Exception ex)
+            {
+                DBFacade.Instance().Delete(msg);
+                throw ex;
+            }
+            
+
+
         }
         
     }

@@ -55,15 +55,8 @@ namespace AgendaServices
         public void SaveOrUpdate(Contatto contatto)
         {
             //eseguo la validazione
-            string error = contatto.Validate();
-            if (string.IsNullOrEmpty(error))
-            {
-                ///nessun errore e procedo
-              
-                DBFacade.Instance().SaveOrUpdate(contatto);
-                return;
-            }
-
+            //contatto.ValidateMethod();
+            DBFacade.Instance().SaveOrUpdate(contatto);           
         }
 
 

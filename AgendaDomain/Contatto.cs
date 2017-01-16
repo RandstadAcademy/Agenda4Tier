@@ -48,7 +48,7 @@ namespace AgendaDomain
         /// <summary>
         /// Metodo che serve a effettuare una piccola validazione dell'input
         /// </summary>
-        public string Validate()
+        public override string DoValidate()
         {
             string MsgErrore = "";
 
