@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B86CD253-0E2B-481D-8ECA-F18E4627CADB}</ProjectGuid>
+    <ProjectGuid>{61BC6F03-85D2-40EC-99B9-6AD704E50A9D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AgendaData</RootNamespace>
-    <AssemblyName>AgendaData</AssemblyName>
+    <RootNamespace>SecuritySystem</RootNamespace>
+    <AssemblyName>SecuritySystem</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,7 +32,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Net" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,27 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="mermec\concreteMappers\DBContatto.cs" />
-    <Compile Include="mermec\concreteMappers\DBMessaggio.cs" />
-    <Compile Include="mermec\concreteMappers\MessaggiLazyList.cs" />
-    <Compile Include="mermec\concreteMappers\RuoloMapper.cs" />
-    <Compile Include="mermec\concreteMappers\UtenteMapper.cs" />
-    <Compile Include="mermec\MapperFactory.cs" />
+    <Compile Include="IRole.cs" />
+    <Compile Include="ISecurityManager.cs" />
+    <Compile Include="ISecurityStore.cs" />
+    <Compile Include="ISecurityUser.cs" />
+    <Compile Include="LoginResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\AgendaDomain\AgendaDomain.csproj">
-      <Project>{1e97d8ed-aa38-4a12-b504-4f8594944309}</Project>
-      <Name>AgendaDomain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PersistenceSystem\PersistenceSystem.csproj">
-      <Project>{e16e06e6-648a-4280-8cd3-2befc8743c59}</Project>
-      <Name>PersistenceSystem</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SecuritySystem\SecuritySystem.csproj">
-      <Project>{61BC6F03-85D2-40EC-99B9-6AD704E50A9D}</Project>
-      <Name>SecuritySystem</Name>
-    </ProjectReference>
+    <Compile Include="Role.cs" />
+    <Compile Include="SecurityUser.cs" />
+    <Compile Include="SimpleSecurityManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

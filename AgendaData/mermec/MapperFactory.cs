@@ -1,4 +1,5 @@
 ﻿using AgendaData.mermec.concreteMappers;
+using AgendaDomain.Security;
 using PersistenceSystem.abstractions.mappers;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,14 @@ namespace AgendaData.mermec
             else if (type.Equals("Messaggio"))
             {
                 return new DBMessaggio(dbType);
+            }
+            else if (type.Equals("Ruolo"))
+            {
+                return new RuoloMapper(dbType);
+            }
+            else if (type.Equals("Utente"))
+            {
+                return new UtenteMapper(dbType);
             }
             return null;
         }

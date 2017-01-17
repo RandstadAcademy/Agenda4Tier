@@ -35,8 +35,6 @@ namespace Agenda
         public Form1()
         {
             InitializeComponent();
-            PersistenceSystemConfig psc = CreateObjectFromProperties();
-            DBFacade.Instance().InitializeSystem(psc);
                
 
             //DBFacade.Instance().MapperFactory = new MapperFactory();
@@ -61,8 +59,7 @@ namespace Agenda
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
-
+            
 
 
             //Istanziamo un oggetto ContattiService che si occuperà di andare a recuperare i contatti

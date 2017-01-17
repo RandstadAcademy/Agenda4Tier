@@ -46,11 +46,17 @@
     <Compile Include="MessageType.cs" />
     <Compile Include="Messaggio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\Ruolo.cs" />
+    <Compile Include="Security\Utente.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PersistenceSystem\PersistenceSystem.csproj">
       <Project>{e16e06e6-648a-4280-8cd3-2befc8743c59}</Project>
       <Name>PersistenceSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SecuritySystem\SecuritySystem.csproj">
+      <Project>{61bc6f03-85d2-40ec-99b9-6ad704e50a9d}</Project>
+      <Name>SecuritySystem</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

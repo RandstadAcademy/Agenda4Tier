@@ -179,7 +179,7 @@ namespace PersistenceSystem.abstractions.mappers
 
                 cmd.CommandText = "Select @@Identity";
                 data.Id = Convert.ToInt32(cmd.ExecuteScalar());
-
+                PostInserActions(cmd, data);
             }
             
             finally
@@ -190,6 +190,11 @@ namespace PersistenceSystem.abstractions.mappers
                 }
                 cmd.Dispose();
             }
+        }
+
+        protected virtual void PostInserActions(IDbCommand cmd, AbstractDomainObject data)
+        {
+            
         }
 
         private void DoUpdate(AbstractDomainObject data)
