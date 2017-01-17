@@ -27,7 +27,7 @@ namespace Agenda
         //private int ID = 0;
 
         private Contatto _current;
-        private IContattiService svc = new LoggedContattiService(new ContattiService());
+        private IContattiService svc = new AuthorizedContattiService( new LoggedContattiService(new ContattiService()));
 
         /// <summary>
         /// Costruttore della classe form2 , la funzione InitializeComponent() è di sistema e viene aggiunta

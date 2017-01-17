@@ -32,6 +32,7 @@ namespace AgendaServices
         /// <summary>
         /// Metodo che mi ritorna la lista di contatti demandando la richiesta al livello inferiore
         /// </summary>
+        
         public List<Contatto> GetAll()
         {
             List<Contatto> c = new List<Contatto>();

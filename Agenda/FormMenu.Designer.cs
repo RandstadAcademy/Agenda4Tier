@@ -62,7 +62,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FormMenu";
             this.Text = "FormMenu";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMenu_FormClosing);
             this.ResumeLayout(false);
 
         }

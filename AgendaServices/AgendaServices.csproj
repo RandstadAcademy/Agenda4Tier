@@ -41,10 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthorizedContattiService.cs" />
     <Compile Include="IContattiService.cs" />
     <Compile Include="ContattiService.cs" />
     <Compile Include="ContattiServiceDecorator.cs" />
+    <Compile Include="IMessaggiService.cs" />
     <Compile Include="LoggedContattiService.cs" />
+    <Compile Include="MessageServiceDecorator.cs" />
     <Compile Include="MessaggiServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SecurityStore.cs" />

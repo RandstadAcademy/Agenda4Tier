@@ -26,7 +26,7 @@ namespace Agenda
         /// Proprietà IDSelected che rappresenta la riga della listBox selezionata
         /// </summary>
         private int IDSelected { get; set; }
-        private IContattiService svc = new LoggedContattiService(new ContattiService());
+        private IContattiService svc = new AuthorizedContattiService(new LoggedContattiService(new ContattiService()));
 
         /// <summary>
         /// Costruttore di Form1 , InitializeComponents istanzia tutti i componenti del form e viene
