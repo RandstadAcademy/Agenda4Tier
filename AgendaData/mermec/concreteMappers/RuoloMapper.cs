@@ -32,7 +32,7 @@ namespace AgendaData.mermec.concreteMappers
 
         protected override void SetParameters(AbstractDomainObject data, IDbCommand cmd)
         {
-            Ruolo ruolo = new Ruolo();
+            Ruolo ruolo = (Ruolo)data;
             IDbDataParameter param = cmd.CreateParameter();
             param.ParameterName = @"name";
             param.Value = ruolo.Name;

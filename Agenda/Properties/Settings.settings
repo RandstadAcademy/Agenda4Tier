@@ -17,5 +17,8 @@
     <Setting Name="AccessConnectionString" Type="System.String" Scope="User">
       <Value Profile="(Default)">Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\\Users\\fgran\\estMermec.mdb</Value>
     </Setting>
+    <Setting Name="FirstTimeApp" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

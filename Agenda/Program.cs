@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Agenda.Initializzation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,9 +15,26 @@ namespace Agenda
         [STAThread]
         static void Main()
         {
+
+            InitializzationFactory.ConstructInitAppCommand().Execute();
+            //verifichiamo che sia il primo avvio
+            FirstRunInitializzation();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FormLogin());
+        }
+
+        private static void FirstRunInitializzation()
+        {
+            bool firstStart = Properties.Settings.Default.FirstTimeApp;
+            //if (firstStart)
+            //{
+                IInitializzationCommand cmd = InitializzationFactory.ConstructFirstAppRunCommand();
+                cmd.Execute();
+                Properties.Settings.Default.FirstTimeApp = false;
+                //Properties.Settings.Default.Save();
+            //}
         }
     }
 }

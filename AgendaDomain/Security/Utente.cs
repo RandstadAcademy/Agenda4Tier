@@ -33,6 +33,8 @@ namespace AgendaDomain.Security
         {
             get
             {
+                if (_roles == null)
+                    _roles = new List<IRole>();
                 return _roles;
             }
 

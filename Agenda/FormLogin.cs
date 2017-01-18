@@ -19,23 +19,10 @@ namespace Agenda
         public FormLogin()
         {
             InitializeComponent();
-            PersistenceSystemConfig psc = CreateObjectFromProperties();
-            DBFacade.Instance().InitializeSystem(psc);
-            SimpleSecurityManager ssm = SimpleSecurityManager.Instance();
-            ISecurityStore store = new SecurityStore();
-            ssm.Initialize(store);
+           
         }
 
-        private PersistenceSystemConfig CreateObjectFromProperties()
-        {
-            PersistenceSystemConfig psc = new PersistenceSystemConfig();
-            psc.DBType = Properties.Settings.Default.DBType;
-            psc.AccessConnectionString = Properties.Settings.Default.AccessConnectionString;
-            psc.SqlConnectionString = Properties.Settings.Default.SqlConnectionString;
-            psc.MapperFactoryClassName = Properties.Settings.Default.MapperFactoryClassName;
-            psc.MapperFactoryDllName = Properties.Settings.Default.MapperFactoryDllName;
-            return psc;
-        }
+       
 
         private void label2_Click(object sender, EventArgs e)
         {

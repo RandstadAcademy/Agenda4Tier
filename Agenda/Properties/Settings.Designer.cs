@@ -83,5 +83,17 @@ namespace Agenda.Properties {
                 this["AccessConnectionString"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool FirstTimeApp {
+            get {
+                return ((bool)(this["FirstTimeApp"]));
+            }
+            set {
+                this["FirstTimeApp"] = value;
+            }
+        }
     }
 }

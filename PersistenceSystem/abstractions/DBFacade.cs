@@ -7,6 +7,7 @@ using System.Runtime.Remoting;
 using System.Text;
 using System.Threading.Tasks;
 using PersistenceSystem.querying;
+using System.Data;
 
 namespace PersistenceSystem.abstractions
 {
@@ -88,6 +89,33 @@ namespace PersistenceSystem.abstractions
                .GetMapperByName(namew, _dbType)
                .SaveOrUpdate(data);
         }
+
+
+        public int ExecuteNonQuery(string query)
+        {
+            IDbConnection conn = AbstractDbDriverFactory.GetDbDrivers(_dbType).GetConnection();
+            IDbCommand cmd = AbstractDbDriverFactory.GetDbDrivers(_dbType).GetCommand(conn, query);
+
+            try
+            {
+                //apro la connessione verso il DB
+                conn.Open();
+
+                //eseguo il comando e mi faccio tornare un reader che mi permetterà di muovermi sui dati
+                return cmd.ExecuteNonQuery();
+
+            }
+            finally
+            {
+                //il blocco finally mi viene eseguito sempre sia quando le cose vanno male che quando vanno bene
+                if (conn.State == System.Data.ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+                cmd.Dispose();
+            }
+        }
+    
 
         public void Delete(AbstractDomainObject data)
         {

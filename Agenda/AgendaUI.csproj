@@ -83,6 +83,14 @@
     <Compile Include="FormRegistrazione.Designer.cs">
       <DependentUpon>FormRegistrazione.cs</DependentUpon>
     </Compile>
+    <Compile Include="Initializzation\BindAdministratorToRoleCommand.cs" />
+    <Compile Include="Initializzation\CreateAdministratorCommand.cs" />
+    <Compile Include="Initializzation\IInitializzationCommand.cs" />
+    <Compile Include="Initializzation\InitializzationCompoositeCommand.cs" />
+    <Compile Include="Initializzation\InitializzationFactory.cs" />
+    <Compile Include="Initializzation\PersistenceSysteInitializzationCommand.cs" />
+    <Compile Include="Initializzation\RoleCreationCommand.cs" />
+    <Compile Include="Initializzation\SecuritySystemInitializzationCommand.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
