@@ -1,4 +1,5 @@
-﻿using MessageService.CompositeMessage;
+﻿using MessageService.ChainMessage;
+using MessageService.CompositeMessage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,5 +30,20 @@ namespace MessageService
 
             return compositeMessageService;
         }
+
+
+        public IChainableMessageService GetChainableMessageService(List<string> list)
+        {
+            return new MailMessageServiceChain(
+                new SmsMessageServiceChain(
+                    new WhatsappMessageServiceChain(
+                        new TelegramMessageServiceChain(
+                         null,list)
+                        ,list)
+                    ,list)
+                ,list);
+        }
+
+
     }
 }

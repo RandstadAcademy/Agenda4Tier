@@ -13,6 +13,7 @@ namespace Agenda.Initializzation
             InitializzationCompoositeCommand cmd = new InitializzationCompoositeCommand();
             cmd.Add(new PersistenceSysteInitializzationCommand());
             cmd.Add(new SecuritySystemInitializzationCommand());
+            cmd.Add(new MessageServiceInitializzationCommand());
             cmd.Add(new RoleCreationCommand());
             cmd.Add(new CreateAdministratorCommand());
 

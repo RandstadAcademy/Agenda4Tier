@@ -41,6 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChainMessage\AbstractMessageServiceChain.cs" />
+    <Compile Include="ChainMessage\IChainableMessageService.cs" />
+    <Compile Include="ChainMessage\MailMessageServiceChain.cs" />
+    <Compile Include="ChainMessage\SmsMessageServiceChain.cs" />
+    <Compile Include="ChainMessage\TelegramMessageServiceChain.cs" />
+    <Compile Include="ChainMessage\WhatsappMessageServiceChain.cs" />
     <Compile Include="CompositeMessage\CompositeMessageService.cs" />
     <Compile Include="CompositeMessage\IMessageService.cs" />
     <Compile Include="CompositeMessage\MailService.cs" />

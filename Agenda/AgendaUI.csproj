@@ -88,6 +88,7 @@
     <Compile Include="Initializzation\IInitializzationCommand.cs" />
     <Compile Include="Initializzation\InitializzationCompoositeCommand.cs" />
     <Compile Include="Initializzation\InitializzationFactory.cs" />
+    <Compile Include="Initializzation\MessageServiceInitializzationCommand.cs" />
     <Compile Include="Initializzation\PersistenceSysteInitializzationCommand.cs" />
     <Compile Include="Initializzation\RoleCreationCommand.cs" />
     <Compile Include="Initializzation\SecuritySystemInitializzationCommand.cs" />

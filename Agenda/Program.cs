@@ -17,7 +17,7 @@ namespace Agenda
         {
 
             InitializzationFactory.ConstructInitAppCommand().Execute();
-    
+            
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

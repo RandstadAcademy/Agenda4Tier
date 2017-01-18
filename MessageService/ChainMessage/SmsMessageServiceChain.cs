@@ -8,21 +8,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace MessageService.CompositeMessage
+namespace MessageService.ChainMessage
 {
-    class SmsService : IMessageService
+    public class SmsMessageServiceChain : AbstractMessageServiceChain
     {
-        public void Add(IMessageService messageService)
+
+        public SmsMessageServiceChain(IChainableMessageService chain, List<String> allowedMessageType)
+            :base(chain, allowedMessageType)
         {
-            throw new NotImplementedException();
+            _messageType = "SMS";
         }
 
-        public void Send(MessagePayload messagePayload)
+        protected override void DoSend(MessagePayload messagePayload)
         {
-        
             SendMessage(messagePayload);
-
         }
+
 
         public const string SMS_TYPE_CLASSIC = "send_sms_classic";
 
@@ -94,7 +95,7 @@ namespace MessageService.CompositeMessage
 
             Hashtable r = new Hashtable();
 
-            
+
 
             parameters = "method=" + HttpUtility.UrlEncode(method) + "&"
                          + "username=" + HttpUtility.UrlEncode(username) + "&password=" + HttpUtility.UrlEncode(password) + "&"
@@ -175,9 +176,5 @@ namespace MessageService.CompositeMessage
             return r;
         }
 
-
-
-
-
-    }
+}
 }

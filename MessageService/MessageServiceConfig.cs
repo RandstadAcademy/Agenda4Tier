@@ -14,5 +14,8 @@ namespace MessageService
         public string User{ get; set; }
         public string Password { get; set; }
         public int Port { get; set; }
+        public string Number { get; set; }
+        public string UserSmsSend { get; set; }
+        public string PasswordSmsSend { get; set; }
     }
 }

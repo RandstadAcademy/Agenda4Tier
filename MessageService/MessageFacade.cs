@@ -24,9 +24,7 @@ namespace MessageService
 
         public void InitializeSystem(MessageServiceConfig messageServiceConfig)
         {
-
             _messageServiceConfig = messageServiceConfig;
-
         }
 
 
@@ -52,10 +50,11 @@ namespace MessageService
                 throw new Exception("Il corpo o l'oggetto sono vuoti");
             }
             MessageFactory factory = new MessageFactory();
-            factory.GetMessageService(messagePayload.TypesList).Send(messagePayload);
-            
+            //factory.GetMessageService(messagePayload.TypesList).Send(messagePayload);
+            factory.GetChainableMessageService(messagePayload.TypesList).Send(messagePayload);
 
-            
+
+
         }
 
     }

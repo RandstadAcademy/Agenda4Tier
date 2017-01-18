@@ -95,5 +95,101 @@ namespace Agenda.Properties {
                 this["FirstTimeApp"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("smtp.gmail.com")]
+        public string SmtpClient {
+            get {
+                return ((string)(this["SmtpClient"]));
+            }
+            set {
+                this["SmtpClient"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("randstadacademydotnet@gmail.com")]
+        public string MailFrom {
+            get {
+                return ((string)(this["MailFrom"]));
+            }
+            set {
+                this["MailFrom"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("587")]
+        public int SmtpServerPort {
+            get {
+                return ((int)(this["SmtpServerPort"]));
+            }
+            set {
+                this["SmtpServerPort"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("randstadacademydotnet@gmail.com")]
+        public string Username {
+            get {
+                return ((string)(this["Username"]));
+            }
+            set {
+                this["Username"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Casalino2016")]
+        public string Password {
+            get {
+                return ((string)(this["Password"]));
+            }
+            set {
+                this["Password"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3333333333")]
+        public string SenderNumber {
+            get {
+                return ((string)(this["SenderNumber"]));
+            }
+            set {
+                this["SenderNumber"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("randstadacademydotnet")]
+        public string UserSmsSend {
+            get {
+                return ((string)(this["UserSmsSend"]));
+            }
+            set {
+                this["UserSmsSend"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Casalino2016")]
+        public string PasswordSmsSend {
+            get {
+                return ((string)(this["PasswordSmsSend"]));
+            }
+            set {
+                this["PasswordSmsSend"] = value;
+            }
+        }
     }
 }

@@ -20,5 +20,29 @@
     <Setting Name="FirstTimeApp" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="SmtpClient" Type="System.String" Scope="User">
+      <Value Profile="(Default)">smtp.gmail.com</Value>
+    </Setting>
+    <Setting Name="MailFrom" Type="System.String" Scope="User">
+      <Value Profile="(Default)">randstadacademydotnet@gmail.com</Value>
+    </Setting>
+    <Setting Name="SmtpServerPort" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">587</Value>
+    </Setting>
+    <Setting Name="Username" Type="System.String" Scope="User">
+      <Value Profile="(Default)">randstadacademydotnet@gmail.com</Value>
+    </Setting>
+    <Setting Name="Password" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Casalino2016</Value>
+    </Setting>
+    <Setting Name="SenderNumber" Type="System.String" Scope="User">
+      <Value Profile="(Default)">3333333333</Value>
+    </Setting>
+    <Setting Name="UserSmsSend" Type="System.String" Scope="User">
+      <Value Profile="(Default)">randstadacademydotnet</Value>
+    </Setting>
+    <Setting Name="PasswordSmsSend" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Casalino2016</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
