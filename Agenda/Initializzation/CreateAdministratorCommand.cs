@@ -1,6 +1,7 @@
 ﻿using AgendaDomain.Security;
 using PersistenceSystem.abstractions;
 using PersistenceSystem.querying;
+using SecuritySystem;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,10 +27,14 @@ namespace Agenda.Initializzation
             u.Mail = "admin@agenda.it";
             u.NameAndSurname = "Amministratore Sistema";
             u.Username = _defaultAdministratorName;
-            u.Password = "admin";
+            u.Password = SimpleSecurityManager.Instance().CryptoPassword("admin");
 
-            Ruolo rAdministrator = new Ruolo();
-            rAdministrator.Name = "Administrator";
+            Query q = DBFacade.Instance().CreateQuery();
+            q.AddCriteria(CriteriaFactory.MatchEqualCriteria("Name", _defaultAdministratorName));
+            List<Ruolo> l = DBFacade.Instance().Find("Ruolo", q).Cast<Ruolo>().ToList();
+
+
+            Ruolo rAdministrator = l.First<Ruolo>();
 
             u.Roles.Add(rAdministrator);
 

@@ -39,7 +39,7 @@ namespace Agenda.Initializzation
             List<Ruolo> l = DBFacade.Instance().Find("Ruolo", q).Cast<Ruolo>().ToList();
             foreach (var ruoloEstratto in l)
             {
-                if (ruoloEstratto.Id.Equals(ruolo))
+                if (ruoloEstratto.Name.Equals(ruolo))
                 {
                     return true;
                 }
